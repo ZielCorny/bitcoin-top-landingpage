@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TT Norms Pro Font Faces */
+@font-face {
+  font-family: 'TT Norms Pro';
+  src: url('/fonts/tt_norms_pro_regular-webfont.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Norms Pro';
+  src: url('/fonts/tt_norms_pro_medium-webfont.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Norms Pro';
+  src: url('/fonts/tt_norms_pro_bold-webfont.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Norms Pro Mono';
+  src: url('/fonts/tt_norms_pro_mono_regular-webfont.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Norms Pro Mono';
+  src: url('/fonts/tt_norms_pro_mono_medium-webfont.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Norms Pro Expanded';
+  src: url('/fonts/tt_norms_pro_expanded_regular-webfont.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Zielzone Dark Theme - Default (since we always use dark) */
+    --background: 68 100% 50%; /* Neon Lime */
+    --foreground: 0 0% 0%; /* Black text on lime background */
+    --card: 0 0% 0%; /* Black */
+    --card-foreground: 0 0% 100%; /* White */
+    --primary: 0 0% 0%; /* Black */
+    --primary-foreground: 68 100% 50%; /* Neon Lime text on black */
+    --secondary: 0 0% 12%; /* Dark gray for secondary elements */
+    --secondary-foreground: 0 0% 100%; /* White */
+    --muted: 0 0% 8%; /* Very dark gray */
+    --muted-foreground: 0 0% 60%; /* Medium gray */
+    --accent: 68 100% 50%; /* Neon Lime accent */
+    --accent-foreground: 0 0% 0%; /* Black */
+    --border: 0 0% 12%; /* Dark border */
+    --input: 0 0% 12%; /* Dark input background */
+    --ring: 68 100% 50%; /* Neon Lime focus ring */
+    --radius: 0.5rem;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Chart colors as hex values for chart libraries */
+    --chart-1-hex: #FAC600;
+    --chart-2-hex: #6ACDCD; 
+    --chart-3-hex: #808080;
+    --chart-4-hex: #B3B3B3;
+    --chart-5-hex: #E2C5F9;
+    --chart-6-hex: #A8B9FB;
+    --chart-7-hex: #F39797;
+  }
+}
+
+/* Apply TT Norms Pro as the default font family */
+html, body {
+  font-family: 'TT Norms Pro', sans-serif;
+  background-color: hsl(var(--background));
+  min-height: 100vh;
+}
