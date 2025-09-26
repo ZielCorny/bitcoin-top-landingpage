@@ -12,34 +12,33 @@ export default function Home() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [validationErrors, setValidationErrors] = useState({ firstName: '', email: '' })
   const [showSignup, setShowSignup] = useState(false)
-  const [signupData, setSignupData] = useState({ firstName: '', lastName: '', email: '' })
-  const [signupErrors, setSignupErrors] = useState({ firstName: '', lastName: '', email: '' })
+  const [signupData, setSignupData] = useState({ email: '' })
+  const [signupErrors, setSignupErrors] = useState({ email: '' })
   const [isSignupSubmitting, setIsSignupSubmitting] = useState(false)
   const [isSignupSubmitted, setIsSignupSubmitted] = useState(false)
+  const [isUserSignedUp, setIsUserSignedUp] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Validate all fields
+    // Validate email field
     const errors = { firstName: '', email: '' }
-    if (!formData.firstName.trim()) {
-      errors.firstName = 'First name is required'
-    }
-    if (!formData.email.trim()) {
+    const trimmedEmail = formData.email.trim()
+    if (!trimmedEmail) {
       errors.email = 'Email is required'
-    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
-      if (!formData.email.includes('@')) {
-        errors.email = `Please include an '@' in the email address. '${formData.email}' is missing an '@'.`
-      } else if (!formData.email.includes('.')) {
-        errors.email = `Please include a '.' in the email address. '${formData.email}' is missing a '.'.`
+    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(trimmedEmail)) {
+      if (!trimmedEmail.includes('@')) {
+        errors.email = `Please include an '@' in the email address. '${trimmedEmail}' is missing an '@'.`
+      } else if (!trimmedEmail.includes('.')) {
+        errors.email = `Please include a '.' in the email address. '${trimmedEmail}' is missing a '.'.`
       } else {
-        errors.email = `Please enter a valid email address. '${formData.email}' is not a valid email.`
+        errors.email = `Please enter a valid email address. '${trimmedEmail}' is not a valid email.`
       }
     }
     
     setValidationErrors(errors)
     
-    if (errors.firstName || errors.email) {
+    if (errors.email) {
       return
     }
     
@@ -50,6 +49,7 @@ export default function Home() {
     
     setIsSubmitting(false)
     setIsSubmitted(true)
+    setIsUserSignedUp(true)
     setFormData({ firstName: '', email: '' })
     setValidationErrors({ firstName: '', email: '' })
   }
@@ -71,15 +71,16 @@ export default function Home() {
     if (name === 'firstName' && !value.trim()) {
       errorMessage = 'First name is required'
     } else if (name === 'email') {
-      if (!value.trim()) {
+      const trimmedValue = value.trim()
+      if (!trimmedValue) {
         errorMessage = 'Email is required'
-      } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)) {
-        if (!value.includes('@')) {
-          errorMessage = `Please include an '@' in the email address. '${value}' is missing an '@'.`
-        } else if (!value.includes('.')) {
-          errorMessage = `Please include a '.' in the email address. '${value}' is missing a '.'.`
+      } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(trimmedValue)) {
+        if (!trimmedValue.includes('@')) {
+          errorMessage = `Please include an '@' in the email address. '${trimmedValue}' is missing an '@'.`
+        } else if (!trimmedValue.includes('.')) {
+          errorMessage = `Please include a '.' in the email address. '${trimmedValue}' is missing a '.'.`
         } else {
-          errorMessage = `Please enter a valid email address. '${value}' is not a valid email.`
+          errorMessage = `Please enter a valid email address. '${trimmedValue}' is not a valid email.`
         }
       }
     }
@@ -101,11 +102,7 @@ export default function Home() {
     const { name, value } = e.target
     let errorMessage = ''
     
-    if (name === 'firstName' && !value.trim()) {
-      errorMessage = 'First name is required'
-    } else if (name === 'lastName' && !value.trim()) {
-      errorMessage = 'Last name is required'
-    } else if (name === 'email') {
+    if (name === 'email') {
       if (!value.trim()) {
         errorMessage = 'Email is required'
       } else {
@@ -128,15 +125,9 @@ export default function Home() {
   const handleSignupSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Validate all fields
-    const errors = { firstName: '', lastName: '', email: '' }
+    // Validate email field
+    const errors = { email: '' }
     
-    if (!signupData.firstName.trim()) {
-      errors.firstName = 'First name is required'
-    }
-    if (!signupData.lastName.trim()) {
-      errors.lastName = 'Last name is required'
-    }
     if (!signupData.email.trim()) {
       errors.email = 'Email is required'
     } else {
@@ -154,7 +145,7 @@ export default function Home() {
     
     setSignupErrors(errors)
     
-    if (errors.firstName || errors.lastName || errors.email) {
+    if (errors.email) {
       return
     }
     
@@ -165,35 +156,23 @@ export default function Home() {
     
     setIsSignupSubmitting(false)
     setIsSignupSubmitted(true)
-    setSignupData({ firstName: '', lastName: '', email: '' })
-    setSignupErrors({ firstName: '', lastName: '', email: '' })
+    setIsUserSignedUp(true)
+    setSignupData({ email: '' })
+    setSignupErrors({ email: '' })
   }
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold font-sans text-primary">Bitcoin Top</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Button variant="outline" size="sm" className="font-sans">
-                Login
-              </Button>
-              <Button size="sm" className="font-sans" onClick={() => setShowSignup(true)}>
-                Sign Up
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Hero Section with Score */}
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-mono mb-16 text-primary ">
-            Confidence Score
+          <h2 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-mono mb-16 text-primary"
+              style={{ 
+                fontFamily: 'TT Norms Pro Expanded, sans-serif', 
+                fontWeight: '900',
+                letterSpacing: '-0.02em'
+              }}>
+            Bitcoin Top
           </h2>
           
           {/* Score Display */}
@@ -308,7 +287,199 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Lorem Ipsum Section */}
+      {/* Signal Notifications Section */}
+      <section className="py-16 bg-foreground/5">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            {!isSubmitted && (
+              <>
+                <h4 className="text-3xl font-bold text-center mb-8 text-primary font-sans">Unlock All Features</h4>
+                <div className="text-foreground/70 font-mono mb-12 text-center">
+                  <ul className="list-disc list-outside space-y-2 inline-block text-left pl-4">
+                    <li>Get an email notification when a signal is triggered</li>
+                    <li>Adjust the scoring behaviour</li>
+                    <li>Modify signal thresholds</li>
+                  </ul>
+                </div>
+              </>
+            )}
+            
+            {isSubmitted ? (
+              <div className="text-center py-8">
+                <div className="text-2xl font-bold text-primary font-mono mb-2">✓ Success!</div>
+                <p className="text-foreground/70 font-mono">You now have 30 day access to all features.</p>
+              </div>
+            ) : isSubmitting ? (
+              <div className="text-center py-8">
+                <div className="flex justify-center mb-4">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                </div>
+                <p className="text-foreground/70 font-mono">Unlocking features...</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-end justify-center">
+                  <div className="sm:w-80 relative">
+                    <label className="block text-sm text-foreground/70 font-mono mb-2">Email</label>
+                    <input
+                      type="text"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      placeholder="Enter your email"
+                      className="w-full px-4 py-2 bg-foreground/5 border border-border rounded-md text-foreground font-mono placeholder:text-foreground/50 placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-primary h-10"
+                    />
+                    {validationErrors.email && (
+                      <div className="absolute top-full left-0 mt-1 z-50">
+                        <div className="bg-foreground border border-border rounded-lg shadow-lg p-3 max-w-xs">
+                          <div className="flex items-start space-x-2">
+                            <div className="w-4 h-4 bg-red-500 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <span className="text-white text-xs font-bold">!</span>
+                            </div>
+                            <p className="text-white text-sm font-mono leading-relaxed">{validationErrors.email}</p>
+                          </div>
+                          <div className="absolute -top-1 left-4 w-2 h-2 bg-foreground border-l border-t border-border transform rotate-45"></div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <Button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="font-sans px-4 py-2 text-sm h-10 rounded-md"
+                  >
+                    {isSubmitting ? 'Unlocking...' : 'Unlock Features'}
+                  </Button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Trading Chart Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h3 className="text-3xl font-bold text-center mb-8 text-primary font-sans">Bitcoin Top Chart</h3>
+          <div className="max-w-6xl mx-auto">
+            {/* Chart Controls */}
+            <div className="bg-foreground/5 border border-border rounded-lg p-6 mb-6 relative">
+              <h4 className="text-xl font-bold mb-6 text-primary font-sans">Chart Controls</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Time Period */}
+                <div>
+                  <label className="block text-sm text-foreground/70 font-mono mb-2">Time Period</label>
+                  <select className="w-full px-3 py-2 bg-foreground/5 border border-border rounded-md text-foreground font-mono focus:outline-none focus:ring-2 focus:ring-primary" defaultValue="1d">
+                    <option value="1h">1 Hour</option>
+                    <option value="4h">4 Hours</option>
+                    <option value="1d">1 Day</option>
+                    <option value="1w">1 Week</option>
+                    <option value="1m">1 Month</option>
+                  </select>
+                </div>
+                
+                {/* Confidence Threshold */}
+                <div>
+                  <label className="block text-sm text-foreground/70 font-mono mb-2">Confidence Threshold: <span className="text-primary font-bold">75</span></label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    defaultValue="75"
+                    className="w-full h-2 bg-foreground/10 rounded-lg appearance-none cursor-pointer slider"
+                    style={{
+                      background: 'linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) 75%, hsl(var(--foreground) / 0.1) 75%, hsl(var(--foreground) / 0.1) 100%)'
+                    }}
+                  />
+                </div>
+                
+                {/* Signal Sensitivity */}
+                <div>
+                  <label className="block text-sm text-foreground/70 font-mono mb-2">Signal Sensitivity: <span className="text-primary font-bold">Medium</span></label>
+                  <select className="w-full px-3 py-2 bg-foreground/5 border border-border rounded-md text-foreground font-mono focus:outline-none focus:ring-2 focus:ring-primary" defaultValue="medium">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+                
+                {/* Chart Type */}
+                <div>
+                  <label className="block text-sm text-foreground/70 font-mono mb-2">Chart Type</label>
+                  <select className="w-full px-3 py-2 bg-foreground/5 border border-border rounded-md text-foreground font-mono focus:outline-none focus:ring-2 focus:ring-primary" defaultValue="line">
+                    <option value="line">Line Chart</option>
+                    <option value="candlestick">Candlestick</option>
+                    <option value="area">Area Chart</option>
+                    <option value="volume">Volume</option>
+                  </select>
+                </div>
+              </div>
+              
+              {/* Additional Parameters */}
+              <div className="mt-6 pt-6 border-t border-border">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Moving Average */}
+                  <div>
+                    <label className="block text-sm text-foreground/70 font-mono mb-2">Moving Average: <span className="text-primary font-bold">20</span></label>
+                    <input
+                      type="range"
+                      min="5"
+                      max="50"
+                      defaultValue="20"
+                      className="w-full h-2 bg-foreground/10 rounded-lg appearance-none cursor-pointer slider"
+                    />
+                  </div>
+                  
+                  {/* RSI Period */}
+                  <div>
+                    <label className="block text-sm text-foreground/70 font-mono mb-2">RSI Period: <span className="text-primary font-bold">14</span></label>
+                    <input
+                      type="range"
+                      min="5"
+                      max="30"
+                      defaultValue="14"
+                      className="w-full h-2 bg-foreground/10 rounded-lg appearance-none cursor-pointer slider"
+                    />
+                  </div>
+                  
+                  {/* Bollinger Bands */}
+                  <div>
+                    <label className="block text-sm text-foreground/70 font-mono mb-2">Bollinger Bands: <span className="text-primary font-bold">2.0</span></label>
+                    <input
+                      type="range"
+                      min="1.0"
+                      max="3.0"
+                      step="0.1"
+                      defaultValue="2.0"
+                      className="w-full h-2 bg-foreground/10 rounded-lg appearance-none cursor-pointer slider"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Blurred Overlay for Non-Signed-Up Users */}
+              {!isUserSignedUp && (
+                <div className="absolute inset-0 bg-background/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                  <Button 
+                    onClick={() => setShowSignup(true)}
+                    className="font-sans px-12 py-6 text-2xl"
+                  >
+                    Unlock Features
+                  </Button>
+                </div>
+              )}
+            </div>
+            
+            {/* Chart Display */}
+            <div className="bg-card border border-border rounded-lg p-6">
+              <TradingChart height={500} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Bitcoin Top Section */}
       <section className="py-16 bg-foreground/5">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -325,101 +496,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trading Chart Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-center mb-8 text-primary font-sans">Bitcoin Top Chart</h3>
-          <div className="max-w-6xl mx-auto">
-            <div className="bg-card border border-border rounded-lg p-6">
-              <TradingChart />
-            </div>
-            
-            {/* Signal Notifications Form */}
-            <div className="mt-8 max-w-6xl mx-auto">
-              <div className="bg-foreground/5 rounded-lg p-6">
-                {!isSubmitted && (
-                  <>
-                    <h4 className="text-3xl font-bold text-center mb-2 text-primary font-sans">Get Signal Notifications</h4>
-                    <p className="text-center text-foreground/70 font-mono mb-6">Receive alerts when trading signals are triggered</p>
-                  </>
-                )}
-                
-                {isSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="text-2xl font-bold text-primary font-mono mb-2">✓ Success!</div>
-                    <p className="text-foreground/70 font-mono">You&apos;ll receive signal notifications at your email</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit}>
-                    <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-end">
-                      <div className="flex-none sm:w-56 relative">
-                        <label className="block text-sm text-foreground/70 font-mono mb-2">First Name</label>
-                        <input
-                          type="text"
-                          name="firstName"
-                          value={formData.firstName}
-                          onChange={handleInputChange}
-                          onBlur={handleInputBlur}
-                          placeholder="Enter your first name"
-                          className="w-full px-4 py-2 bg-foreground/5 border border-border rounded-md text-foreground font-mono placeholder:text-foreground/50 placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-primary h-10"
-                        />
-                        {validationErrors.firstName && (
-                          <div className="absolute top-full left-0 mt-1 z-50">
-                            <div className="bg-foreground border border-border rounded-lg shadow-lg p-3 max-w-xs">
-                              <div className="flex items-start space-x-2">
-                                <div className="w-4 h-4 bg-red-500 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
-                                  <span className="text-white text-xs font-bold">!</span>
-                                </div>
-                                <p className="text-white text-sm font-mono leading-relaxed">{validationErrors.firstName}</p>
-                              </div>
-                              <div className="absolute -top-1 left-4 w-2 h-2 bg-foreground border-l border-t border-border transform rotate-45"></div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex-1 min-w-0 relative">
-                        <label className="block text-sm text-foreground/70 font-mono mb-2">Email</label>
-                        <input
-                          type="text"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          onBlur={handleInputBlur}
-                          placeholder="Enter your email"
-                          className="w-full px-4 py-2 bg-foreground/5 border border-border rounded-md text-foreground font-mono placeholder:text-foreground/50 placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-primary h-10"
-                        />
-                        {validationErrors.email && (
-                          <div className="absolute top-full left-0 mt-1 z-50">
-                            <div className="bg-foreground border border-border rounded-lg shadow-lg p-3 max-w-xs">
-                              <div className="flex items-start space-x-2">
-                                <div className="w-4 h-4 bg-red-500 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
-                                  <span className="text-white text-xs font-bold">!</span>
-                                </div>
-                                <p className="text-white text-sm font-mono leading-relaxed">{validationErrors.email}</p>
-                              </div>
-                              <div className="absolute -top-1 left-4 w-2 h-2 bg-foreground border-l border-t border-border transform rotate-45"></div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                      <Button 
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="font-sans px-4 py-2 text-sm h-10 rounded-md"
-                      >
-                        {isSubmitting ? 'Subscribing...' : 'Get Notifications'}
-                      </Button>
-                    </div>
-                  </form>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
-      <section className="py-16 bg-foreground/5">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <h3 className="text-3xl font-bold text-center mb-12 text-primary font-sans">Frequently Asked Questions</h3>
           <div className="max-w-6xl mx-auto">
@@ -473,6 +551,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Legal Disclaimer Section */}
+      <section className="py-12 bg-foreground/5">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h3 className="text-2xl font-bold text-center mb-8 text-primary font-sans">Legal Disclaimer</h3>
+            <div className="space-y-4 text-sm text-foreground/70 font-mono">
+              <p>
+                <strong className="text-foreground">Risk Warning:</strong> Bitcoin Top provides confidence scores and trading signals for informational purposes only. Cryptocurrency trading involves substantial risk of loss and is not suitable for all investors. Past performance does not guarantee future results.
+              </p>
+              <p>
+                <strong className="text-foreground">No Financial Advice:</strong> The information provided by Bitcoin Top is not intended as financial, investment, or trading advice. You should not rely solely on our signals or scores when making investment decisions. Always conduct your own research and consider consulting with a qualified financial advisor.
+              </p>
+              <p>
+                <strong className="text-foreground">Data Accuracy:</strong> While we strive to provide accurate and up-to-date information, Bitcoin Top does not guarantee the accuracy, completeness, or timeliness of any data, scores, or signals provided. Market conditions can change rapidly and without notice.
+              </p>
+              <p>
+                <strong className="text-foreground">Limitation of Liability:</strong> Bitcoin Top and its affiliates shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from the use of our services, including but not limited to trading losses, data inaccuracies, or service interruptions.
+              </p>
+              <p>
+                <strong className="text-foreground">Regulatory Notice:</strong> Bitcoin Top is not a licensed financial services provider. Our services are provided on an "as is" basis without warranties of any kind. Users are responsible for ensuring compliance with applicable laws and regulations in their jurisdiction.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="border-t border-border py-12">
         <div className="container mx-auto px-4">
@@ -507,13 +611,13 @@ export default function Home() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-background border border-border rounded-lg p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-primary font-sans">Create Account</h2>
+              <h2 className="text-2xl font-bold text-primary font-sans">Unlock All Features</h2>
               <button
                 onClick={() => {
                   setShowSignup(false)
                   setIsSignupSubmitted(false)
-                  setSignupData({ firstName: '', lastName: '', email: '' })
-                  setSignupErrors({ firstName: '', lastName: '', email: '' })
+                  setSignupData({ email: '' })
+                  setSignupErrors({ email: '' })
                 }}
                 className="text-foreground/70 hover:text-foreground text-2xl font-bold"
               >
@@ -521,67 +625,28 @@ export default function Home() {
               </button>
             </div>
             
+            <div className="text-foreground/70 font-mono mb-6">
+              <ul className="list-disc list-outside space-y-1 pl-4">
+                <li>Get an email notification when a signal is triggered</li>
+                <li>Adjust the scoring behaviour</li>
+                <li>Modify signal thresholds</li>
+              </ul>
+            </div>
+            
             {isSignupSubmitted ? (
               <div className="text-center py-8">
-                <div className="text-2xl font-bold text-primary font-mono mb-2">✓ Account Created!</div>
-                <p className="text-foreground/70 font-mono">Welcome to Bitcoin Top! You can now access all features.</p>
+                <div className="text-2xl font-bold text-primary font-mono mb-2">✓ Features Unlocked!</div>
+                <p className="text-foreground/70 font-mono">You now have 30 day access to all features.</p>
+              </div>
+            ) : isSignupSubmitting ? (
+              <div className="text-center py-8">
+                <div className="flex justify-center mb-4">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                </div>
+                <p className="text-foreground/70 font-mono">Unlocking features...</p>
               </div>
             ) : (
               <form onSubmit={handleSignupSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="relative">
-                    <label className="block text-sm text-foreground/70 font-mono mb-2">First Name</label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={signupData.firstName}
-                      onChange={handleSignupInputChange}
-                      onBlur={handleSignupInputBlur}
-                      placeholder="First name"
-                      className="w-full px-4 py-2 bg-foreground/5 border border-border rounded-md text-foreground font-mono placeholder:text-foreground/50 placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-primary h-10"
-                    />
-                    {signupErrors.firstName && (
-                      <div className="absolute top-full left-0 mt-1 z-50">
-                        <div className="bg-foreground border border-border rounded-lg shadow-lg p-3 max-w-xs">
-                          <div className="flex items-start space-x-2">
-                            <div className="w-4 h-4 bg-red-500 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <span className="text-white text-xs font-bold">!</span>
-                            </div>
-                            <p className="text-white text-sm font-mono leading-relaxed">{signupErrors.firstName}</p>
-                          </div>
-                          <div className="absolute -top-1 left-4 w-2 h-2 bg-foreground border-l border-t border-border transform rotate-45"></div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div className="relative">
-                    <label className="block text-sm text-foreground/70 font-mono mb-2">Last Name</label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={signupData.lastName}
-                      onChange={handleSignupInputChange}
-                      onBlur={handleSignupInputBlur}
-                      placeholder="Last name"
-                      className="w-full px-4 py-2 bg-foreground/5 border border-border rounded-md text-foreground font-mono placeholder:text-foreground/50 placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-primary h-10"
-                    />
-                    {signupErrors.lastName && (
-                      <div className="absolute top-full left-0 mt-1 z-50">
-                        <div className="bg-foreground border border-border rounded-lg shadow-lg p-3 max-w-xs">
-                          <div className="flex items-start space-x-2">
-                            <div className="w-4 h-4 bg-red-500 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <span className="text-white text-xs font-bold">!</span>
-                            </div>
-                            <p className="text-white text-sm font-mono leading-relaxed">{signupErrors.lastName}</p>
-                          </div>
-                          <div className="absolute -top-1 left-4 w-2 h-2 bg-foreground border-l border-t border-border transform rotate-45"></div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                
                 <div className="relative">
                   <label className="block text-sm text-foreground/70 font-mono mb-2">Email</label>
                   <input
@@ -613,7 +678,7 @@ export default function Home() {
                   disabled={isSignupSubmitting}
                   className="w-full font-sans py-2 text-sm h-10 rounded-md mt-6"
                 >
-                  {isSignupSubmitting ? 'Creating Account...' : 'Create Account'}
+                  {isSignupSubmitting ? 'Unlocking...' : 'Unlock'}
                 </Button>
               </form>
             )}

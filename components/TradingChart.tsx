@@ -5,9 +5,10 @@ import { createChart, ColorType } from 'lightweight-charts'
 
 interface TradingChartProps {
   className?: string
+  height?: number
 }
 
-export default function TradingChart({ className }: TradingChartProps) {
+export default function TradingChart({ className, height = 500 }: TradingChartProps) {
   const chartContainerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<any>(null)
 
@@ -21,7 +22,7 @@ export default function TradingChart({ className }: TradingChartProps) {
         textColor: '#ffffff',
       },
       width: chartContainerRef.current.clientWidth,
-      height: 400,
+      height: height,
       grid: {
         vertLines: { color: 'rgba(255, 255, 255, 0.1)' },
         horzLines: { color: 'rgba(255, 255, 255, 0.1)' },
@@ -104,7 +105,7 @@ export default function TradingChart({ className }: TradingChartProps) {
 
   return (
     <div className={`w-full ${className}`}>
-      <div ref={chartContainerRef} className="w-full h-[400px]" />
+      <div ref={chartContainerRef} className="w-full" style={{ height: `${height}px` }} />
     </div>
   )
 }
