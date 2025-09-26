@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import TradingChart from '@/components/TradingChart'
@@ -17,6 +17,24 @@ export default function Home() {
   const [isSignupSubmitting, setIsSignupSubmitting] = useState(false)
   const [isSignupSubmitted, setIsSignupSubmitted] = useState(false)
   const [isUserSignedUp, setIsUserSignedUp] = useState(false)
+  const [isGlitching, setIsGlitching] = useState(false)
+
+  // Glitch effect timer
+  useEffect(() => {
+    const glitchInterval = () => {
+      const delay = Math.random() * 3000 + 2000 // Random delay between 2-5 seconds
+      setTimeout(() => {
+        setIsGlitching(true)
+        const glitchDuration = Math.random() * 800 + 200 // Random duration between 0.2-1 second
+        setTimeout(() => {
+          setIsGlitching(false)
+          glitchInterval() // Schedule next glitch
+        }, glitchDuration)
+      }, delay)
+    }
+    
+    glitchInterval() // Start the first glitch cycle
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -179,11 +197,11 @@ export default function Home() {
           <div className="relative flex flex-col items-center justify-center mb-12">
             
             {/* Large 3D Score Number */}
-            <div className="relative mb-12">
+            <div className={`relative mb-12 ${isGlitching ? 'glitch-container' : ''}`}>
               <div 
-                className="text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground"
+                className={`text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground ${isGlitching ? 'glitch-effect' : ''}`}
                 style={{
-                  textShadow: '12px 12px 0px hsl(68, 100%, 20%), 24px 24px 0px hsl(68, 100%, 30%), 36px 36px 0px hsl(68, 100%, 40%)',
+                  textShadow: isGlitching ? 'none' : '12px 12px 0px hsl(68, 100%, 20%), 24px 24px 0px hsl(68, 100%, 30%), 36px 36px 0px hsl(68, 100%, 40%)',
                   fontFamily: 'TT Norms Pro, sans-serif',
                   fontWeight: '900',
                   lineHeight: '0.8'
