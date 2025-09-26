@@ -539,13 +539,32 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h3 className="text-3xl font-bold text-center mb-8 text-primary font-sans">About Bitcoin Top</h3>
-            <div className="space-y-6 text-lg text-foreground/80 font-mono">
+            <div className="space-y-6 text-lg text-foreground/80 font-mono mb-12">
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>
               <p>
                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
+            </div>
+            
+            {/* Explanation Video */}
+            <div className="text-center mb-8">
+              <h4 className="text-2xl font-bold text-primary font-sans mb-4">How Bitcoin Top Works</h4>
+              <p className="text-foreground/70 font-mono">Watch our explanation video to understand the Bitcoin Top scoring system</p>
+            </div>
+            
+            <div className="relative w-full max-w-4xl mx-auto">
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg border border-border"
+                  src="https://www.youtube.com/embed/Oo5yiOyAh5Q"
+                  title="Bitcoin Top Explanation Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
