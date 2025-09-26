@@ -21,10 +21,10 @@ export default function Home() {
 
   // Glitch effect timer
   useEffect(() => {
-    const glitchDurations = [50, 200, 1000] // Fixed durations in ms
+    const glitchDurations = [200, 500, 1000] // Fixed durations in ms
     
     const glitchInterval = () => {
-      const delay = Math.random() * 8000 + 2000 // Random delay between 3-8 seconds
+      const delay = Math.random() * 4000 + 2000 // Random delay between 3-8 seconds
       setTimeout(() => {
         setIsGlitching(true)
         const glitchDuration = glitchDurations[Math.floor(Math.random() * glitchDurations.length)]
@@ -551,7 +551,6 @@ export default function Home() {
             {/* Explanation Video */}
             <div className="text-center mb-8">
               <h4 className="text-2xl font-bold text-primary font-sans mb-4">How Bitcoin Top Works</h4>
-              <p className="text-foreground/70 font-mono">Watch our explanation video to understand the Bitcoin Top scoring system</p>
             </div>
             
             <div className="relative w-full max-w-4xl mx-auto">
