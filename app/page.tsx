@@ -21,11 +21,13 @@ export default function Home() {
 
   // Glitch effect timer
   useEffect(() => {
+    const glitchDurations = [50, 200, 1000] // Fixed durations in ms
+    
     const glitchInterval = () => {
-      const delay = Math.random() * 3000 + 2000 // Random delay between 2-5 seconds
+      const delay = Math.random() * 8000 + 2000 // Random delay between 3-8 seconds
       setTimeout(() => {
         setIsGlitching(true)
-        const glitchDuration = Math.random() * 800 + 200 // Random duration between 0.2-1 second
+        const glitchDuration = glitchDurations[Math.floor(Math.random() * glitchDurations.length)]
         setTimeout(() => {
           setIsGlitching(false)
           glitchInterval() // Schedule next glitch
@@ -198,6 +200,7 @@ export default function Home() {
             
             {/* Large 3D Score Number */}
             <div className={`relative mb-12 ${isGlitching ? 'glitch-container' : ''}`}>
+              {/* Main Text */}
               <div 
                 className={`text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground ${isGlitching ? 'glitch-effect' : ''}`}
                 style={{
@@ -209,6 +212,40 @@ export default function Home() {
               >
                 87
               </div>
+              
+              {/* Glitch Duplicate - Top Half */}
+              {isGlitching && (
+                <div 
+                  className="absolute top-0 left-0 text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground glitch-effect"
+                  style={{
+                    fontFamily: 'TT Norms Pro, sans-serif',
+                    fontWeight: '900',
+                    lineHeight: '0.8',
+                    clipPath: 'inset(0% 0% 50% 0%)',
+                    transform: 'translateX(8px)',
+                    zIndex: 1
+                  }}
+                >
+                  87
+                </div>
+              )}
+              
+              {/* Glitch Duplicate - Bottom Half */}
+              {isGlitching && (
+                <div 
+                  className="absolute top-0 left-0 text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground glitch-effect"
+                  style={{
+                    fontFamily: 'TT Norms Pro, sans-serif',
+                    fontWeight: '900',
+                    lineHeight: '0.8',
+                    clipPath: 'inset(50% 0% 0% 0%)',
+                    transform: 'translateX(-12px)',
+                    zIndex: 1
+                  }}
+                >
+                  87
+                </div>
+              )}
             </div>
             
             {/* Date */}
@@ -306,14 +343,14 @@ export default function Home() {
       </section>
 
       {/* Signal Notifications Section */}
-      <section className="py-16 bg-foreground/5">
+      <section className="py-8 bg-foreground/5">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {!isSubmitted && (
               <>
-                <h4 className="text-3xl font-bold text-center mb-8 text-primary font-sans">Unlock All Features</h4>
-                <div className="text-foreground/70 font-mono mb-12 text-center">
-                  <ul className="list-disc list-outside space-y-2 inline-block text-left pl-4">
+                <h4 className="text-3xl font-bold text-center mb-4 text-primary font-sans">Unlock All Features</h4>
+                <div className="text-foreground/70 font-mono mb-6 text-center">
+                  <ul className="list-disc list-outside space-y-1 inline-block text-left pl-4">
                     <li>Get an email notification when a signal is triggered</li>
                     <li>Adjust the scoring behaviour</li>
                     <li>Modify signal thresholds</li>
@@ -381,8 +418,13 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h3 className="text-3xl font-bold text-center mb-8 text-primary font-sans">Bitcoin Top Chart</h3>
           <div className="max-w-6xl mx-auto">
+            {/* Chart Display */}
+            <div className="bg-card border border-border rounded-lg p-6 mb-6">
+              <TradingChart height={500} />
+            </div>
+            
             {/* Chart Controls */}
-            <div className="bg-foreground/5 border border-border rounded-lg p-6 mb-6 relative">
+            <div className="bg-foreground/5 border border-border rounded-lg p-6 relative">
               <h4 className="text-xl font-bold mb-6 text-primary font-sans">Chart Controls</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {/* Time Period */}
@@ -487,11 +529,6 @@ export default function Home() {
                   </Button>
                 </div>
               )}
-            </div>
-            
-            {/* Chart Display */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <TradingChart height={500} />
             </div>
           </div>
         </div>
