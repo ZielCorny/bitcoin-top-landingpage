@@ -722,6 +722,9 @@ video {
 .h-full {
   height: 100%;
 }
+.h-auto {
+  height: auto;
+}
 .max-h-\[90vh\] {
   max-height: 90vh;
 }
@@ -1614,6 +1617,11 @@ html, body {
   .md\:text-\[14rem\] {
     font-size: 14rem;
   }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1637,6 +1645,11 @@ html, body {
 
   .lg\:text-\[18rem\] {
     font-size: 18rem;
+  }
+
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 }
 
