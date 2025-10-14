@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"components/TradingChartPlotly.tsx -> plotly.js\":{\"id\":\"components/TradingChartPlotly.tsx -> plotly.js\",\"files\":[\"static/css/_app-pages-browser_node_modules_plotly_js_lib_index_js.css\",\"static/chunks/_app-pages-browser_node_modules_plotly_js_lib_index_js.js\"]},\"components/TradingChartPlotly.tsx -> react-plotly.js\":{\"id\":\"components/TradingChartPlotly.tsx -> react-plotly.js\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_react-plotly_js_react-plotly_js.js\"]}}"
