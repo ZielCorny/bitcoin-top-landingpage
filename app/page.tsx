@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import TradingChartPlotly from '@/components/TradingChartPlotly'
+import ConfidenceGauge from '@/components/ConfidenceGauge'
 
 export default function Home() {
   const [formData, setFormData] = useState({ firstName: '', email: '' })
@@ -195,6 +196,9 @@ export default function Home() {
               }}>
             Bitcoin Top
           </h2>
+          
+          {/* Confidence Gauge */}
+          <ConfidenceGauge confidence={78} className="mb-12" />
           
           {/* Score Display */}
           <div className="relative flex flex-col items-center justify-center mb-12">
