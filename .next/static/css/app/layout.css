@@ -214,7 +214,7 @@ html,
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
-  font-family: TT Norms Pro, sans-serif; /* 4 */
+  font-family: zz_type_std, sans-serif; /* 4 */
   font-feature-settings: normal; /* 5 */
   font-variation-settings: normal; /* 6 */
   -webkit-tap-highlight-color: transparent; /* 7 */
@@ -294,7 +294,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: TT Norms Pro Mono, monospace; /* 1 */
+  font-family: zz_type_mon, monospace; /* 1 */
   font-feature-settings: normal; /* 2 */
   font-variation-settings: normal; /* 3 */
   font-size: 1em; /* 4 */
@@ -1055,10 +1055,10 @@ video {
   text-align: center;
 }
 .font-mono {
-  font-family: TT Norms Pro Mono, monospace;
+  font-family: zz_type_mon, monospace;
 }
 .font-sans {
-  font-family: TT Norms Pro, sans-serif;
+  font-family: zz_type_std, sans-serif;
 }
 .text-2xl {
   font-size: 1.5rem;
@@ -1228,66 +1228,460 @@ video {
   animation-duration: 200ms;
 }
 
-/* TT Norms Pro Font Faces */
+/* ZZ Type Standard Font Faces */
 @font-face {
-  font-family: 'TT Norms Pro';
-  src: url('/fonts/tt_norms_pro_regular-webfont.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_thin.woff2") format("woff2");
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'TT Norms Pro';
-  src: url('/fonts/tt_norms_pro_medium-webfont.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_thin_ita.woff2") format("woff2");
+	font-weight: 100;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'TT Norms Pro';
-  src: url('/fonts/tt_norms_pro_bold-webfont.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_extralight.woff2") format("woff2");
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'TT Norms Pro Mono';
-  src: url('/fonts/tt_norms_pro_mono_regular-webfont.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_extralight_ita.woff2") format("woff2");
+	font-weight: 200;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'TT Norms Pro Mono';
-  src: url('/fonts/tt_norms_pro_mono_medium-webfont.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_light.woff2") format("woff2");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'TT Norms Pro Expanded';
-  src: url('/fonts/tt_norms_pro_expanded_regular-webfont.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_light_ita.woff2") format("woff2");
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'TT Norms Pro Expanded';
-  src: url('/fonts/tt_norms_pro_expanded_extrabold-webfont.woff2') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_normal.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
 }
 
-/* Apply TT Norms Pro as the default font family */
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_normal_ita.woff2") format("woff2");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_medium.woff2") format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_medium_ita.woff2") format("woff2");
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_demibold.woff2") format("woff2");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_demibold_ita.woff2") format("woff2");
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_bold_ita.woff2") format("woff2");
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_extrabold.woff2") format("woff2");
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_extrabold_ita.woff2") format("woff2");
+	font-weight: 800;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_black.woff2") format("woff2");
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_black_ita.woff2") format("woff2");
+	font-weight: 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_extrablack.woff2") format("woff2");
+	font-weight: 950;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("/fonts/zz_type_std_extrablack_ita.woff2") format("woff2");
+	font-weight: 950;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* ZZ Type Expanded Font Faces */
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_thin.woff2") format("woff2");
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_thin_ita.woff2") format("woff2");
+	font-weight: 100;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_extralight.woff2") format("woff2");
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_extralight_ita.woff2") format("woff2");
+	font-weight: 200;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_light.woff2") format("woff2");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_light_ita.woff2") format("woff2");
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_normal.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_normal_ita.woff2") format("woff2");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_medium.woff2") format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_medium_ita.woff2") format("woff2");
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_demibold.woff2") format("woff2");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_demibold_ita.woff2") format("woff2");
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_bold_ita.woff2") format("woff2");
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_extrabold.woff2") format("woff2");
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_extrabold_ita.woff2") format("woff2");
+	font-weight: 800;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_black.woff2") format("woff2");
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_black_ita.woff2") format("woff2");
+	font-weight: 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_extrablack.woff2") format("woff2");
+	font-weight: 950;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_exp";
+	src: url("/fonts/zz_type_exp_extrablack_ita.woff2") format("woff2");
+	font-weight: 950;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* ZZ Type Mono Font Faces */
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_thin.woff2") format("woff2");
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_thin_ita.woff2") format("woff2");
+	font-weight: 100;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_extralight.woff2") format("woff2");
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_extralight_ita.woff2") format("woff2");
+	font-weight: 200;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_light.woff2") format("woff2");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_light_ita.woff2") format("woff2");
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_ita.woff2") format("woff2");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_medium.woff2") format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_medium_ita.woff2") format("woff2");
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_demibold.woff2") format("woff2");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_demibold_ita.woff2") format("woff2");
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("/fonts/zz_type_mon_bold_ita.woff2") format("woff2");
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* Apply ZZ Type Standard as the default font family */
 html, body {
-  font-family: 'TT Norms Pro', sans-serif;
+  font-family: 'zz_type_std', sans-serif;
   background-color: hsl(var(--background));
   min-height: 100vh;
 }

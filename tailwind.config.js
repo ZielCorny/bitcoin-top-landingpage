@@ -17,9 +17,12 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        'sans': ['TT Norms Pro', 'sans-serif'],
-        'mono': ['TT Norms Pro Mono', 'monospace'],
-        'expanded': ['TT Norms Pro Expanded', 'sans-serif'],
+        'sans': ['zz_type_std', 'sans-serif'],
+        'mono': ['zz_type_mon', 'monospace'],
+        'expanded': ['zz_type_exp', 'sans-serif'],
+        'std': ['zz_type_std', 'sans-serif'],
+        'exp': ['zz_type_exp', 'sans-serif'],
+        'mon': ['zz_type_mon', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",

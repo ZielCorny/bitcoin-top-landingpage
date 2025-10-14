@@ -1,13 +1,13 @@
 # Bitcoin Top Frontend
 
-A modern Next.js application built with Tailwind CSS and shadcn/ui components, featuring custom TT Norms Pro fonts and a sleek dark theme.
+A modern Next.js application built with Tailwind CSS and shadcn/ui components, featuring custom ZZ Type fonts and a sleek dark theme.
 
 ## Features
 
 - ⚡ **Next.js 15** with App Router and TypeScript
 - 🎨 **Tailwind CSS** with custom design system
 - 🧩 **shadcn/ui** components for beautiful UI
-- 🔤 **Custom Fonts** - TT Norms Pro family
+- 🔤 **Custom Fonts** - ZZ Type family
 - 🌙 **Dark Theme** with neon lime accents
 - 📱 **Responsive Design** for all devices
 
@@ -54,11 +54,11 @@ yarn dev
 
 ## Custom Fonts
 
-The project includes the complete TT Norms Pro font family:
+The project includes the complete ZZ Type font family:
 
-- **TT Norms Pro** (Regular, Medium, Bold)
-- **TT Norms Pro Mono** (Regular, Medium) 
-- **TT Norms Pro Expanded** (Regular)
+- **zz_type_std** (Standard) - Complete weight range (100-900) with italic variants
+- **zz_type_exp** (Expanded) - Complete weight range (100-900) with italic variants  
+- **zz_type_mon** (Monospace) - Complete weight range (100-700) with italic variants
 
 Fonts are automatically loaded and configured in the Tailwind CSS setup.
 

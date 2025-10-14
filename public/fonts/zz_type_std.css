@@ -1,0 +1,167 @@
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_thin.woff2") format("woff2");
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_thin_ita.woff2") format("woff2");
+	font-weight: 100;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_extralight.woff2") format("woff2");
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_extralight_ita.woff2") format("woff2");
+	font-weight: 200;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_light.woff2") format("woff2");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_light_ita.woff2") format("woff2");
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_normal.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_normal_ita.woff2") format("woff2");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_medium.woff2") format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_medium_ita.woff2") format("woff2");
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_demibold.woff2") format("woff2");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_demibold_ita.woff2") format("woff2");
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_bold_ita.woff2") format("woff2");
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_extrabold.woff2") format("woff2");
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_extrabold_ita.woff2") format("woff2");
+	font-weight: 800;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_black.woff2") format("woff2");
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_black_ita.woff2") format("woff2");
+	font-weight: 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_extrablack.woff2") format("woff2");
+	font-weight: 950;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_extrablack_ita.woff2") format("woff2");
+	font-weight: 950;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_std";
+	src: url("zz_type_std_regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}

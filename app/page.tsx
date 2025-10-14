@@ -189,9 +189,9 @@ export default function Home() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-mono mb-16 text-primary"
               style={{ 
-                fontFamily: 'TT Norms Pro Expanded, sans-serif', 
-                fontWeight: '900',
-                letterSpacing: '-0.02em'
+                fontFamily: 'zz_type_exp, sans-serif', 
+                fontWeight: '800',
+                letterSpacing: '-0.08em'
               }}>
             Bitcoin Top
           </h2>
@@ -206,7 +206,7 @@ export default function Home() {
                 className={`text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground ${isGlitching ? 'glitch-effect' : ''}`}
                 style={{
                   textShadow: isGlitching ? 'none' : '12px 12px 0px hsl(68, 100%, 20%), 24px 24px 0px hsl(68, 100%, 30%), 36px 36px 0px hsl(68, 100%, 40%)',
-                  fontFamily: 'TT Norms Pro, sans-serif',
+                  fontFamily: 'zz_type_std, sans-serif',
                   fontWeight: '900',
                   lineHeight: '0.8'
                 }}
@@ -219,7 +219,7 @@ export default function Home() {
                 <div 
                   className="absolute top-0 left-0 text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground glitch-effect"
                   style={{
-                    fontFamily: 'TT Norms Pro, sans-serif',
+                    fontFamily: 'zz_type_std, sans-serif',
                     fontWeight: '900',
                     lineHeight: '0.8',
                     clipPath: 'inset(0% 0% 50% 0%)',
@@ -236,7 +236,7 @@ export default function Home() {
                 <div 
                   className="absolute top-0 left-0 text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground glitch-effect"
                   style={{
-                    fontFamily: 'TT Norms Pro, sans-serif',
+                    fontFamily: 'zz_type_std, sans-serif',
                     fontWeight: '900',
                     lineHeight: '0.8',
                     clipPath: 'inset(50% 0% 0% 0%)',

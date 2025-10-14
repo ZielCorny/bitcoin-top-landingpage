@@ -1,0 +1,111 @@
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_thin.woff2") format("woff2");
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_thin_ita.woff2") format("woff2");
+	font-weight: 100;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_extralight.woff2") format("woff2");
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_extralight_ita.woff2") format("woff2");
+	font-weight: 200;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_light.woff2") format("woff2");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_light_ita.woff2") format("woff2");
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_ita.woff2") format("woff2");
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_medium.woff2") format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_medium_ita.woff2") format("woff2");
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_demibold.woff2") format("woff2");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_demibold_ita.woff2") format("woff2");
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "zz_type_mon";
+	src: url("zz_type_mon_bold_ita.woff2") format("woff2");
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
