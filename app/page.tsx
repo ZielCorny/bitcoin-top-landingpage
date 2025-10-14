@@ -18,27 +18,8 @@ export default function Home() {
   const [isSignupSubmitting, setIsSignupSubmitting] = useState(false)
   const [isSignupSubmitted, setIsSignupSubmitted] = useState(false)
   const [isUserSignedUp, setIsUserSignedUp] = useState(false)
-  const [isGlitching, setIsGlitching] = useState(false)
   const [useLogScale, setUseLogScale] = useState(true) // Default to log scale
 
-  // Glitch effect timer
-  useEffect(() => {
-    const glitchDurations = [200, 500, 1000] // Fixed durations in ms
-    
-    const glitchInterval = () => {
-      const delay = Math.random() * 4000 + 2000 // Random delay between 3-8 seconds
-      setTimeout(() => {
-        setIsGlitching(true)
-        const glitchDuration = glitchDurations[Math.floor(Math.random() * glitchDurations.length)]
-        setTimeout(() => {
-          setIsGlitching(false)
-          glitchInterval() // Schedule next glitch
-        }, glitchDuration)
-      }, delay)
-    }
-    
-    glitchInterval() // Start the first glitch cycle
-  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -197,19 +178,21 @@ export default function Home() {
             Bitcoin Top
           </h2>
           
-          {/* Confidence Gauge */}
-          <ConfidenceGauge confidence={78} className="mb-12" />
+          {/* Confidence Gauge - Positioned behind content */}
+          <div className="absolute top-0 left-0 w-full h-full z-0">
+            <ConfidenceGauge confidence={78} className="mt-60" />
+          </div>
           
           {/* Score Display */}
-          <div className="relative flex flex-col items-center justify-center mb-12">
+          <div className="relative flex flex-col items-center justify-center mb-12 z-10">
             
             {/* Large 3D Score Number */}
-            <div className={`relative mb-12 ${isGlitching ? 'glitch-container' : ''}`}>
+            <div className="relative mb-12">
               {/* Main Text */}
               <div 
-                className={`text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground ${isGlitching ? 'glitch-effect' : ''}`}
+                className="text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground"
                 style={{
-                  textShadow: isGlitching ? 'none' : '12px 12px 0px hsl(68, 100%, 20%), 24px 24px 0px hsl(68, 100%, 30%), 36px 36px 0px hsl(68, 100%, 40%)',
+                  textShadow: '12px 12px 0px hsl(68, 100%, 20%), 24px 24px 0px hsl(68, 100%, 30%), 36px 36px 0px hsl(68, 100%, 40%)',
                   fontFamily: 'zz_type_std, sans-serif',
                   fontWeight: '900',
                   lineHeight: '0.8'
@@ -218,39 +201,7 @@ export default function Home() {
                 87
               </div>
               
-              {/* Glitch Duplicate - Top Half */}
-              {isGlitching && (
-                <div 
-                  className="absolute top-0 left-0 text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground glitch-effect"
-                  style={{
-                    fontFamily: 'zz_type_std, sans-serif',
-                    fontWeight: '900',
-                    lineHeight: '0.8',
-                    clipPath: 'inset(0% 0% 50% 0%)',
-                    transform: 'translateX(8px)',
-                    zIndex: 1
-                  }}
-                >
-                  87
-                </div>
-              )}
               
-              {/* Glitch Duplicate - Bottom Half */}
-              {isGlitching && (
-                <div 
-                  className="absolute top-0 left-0 text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground glitch-effect"
-                  style={{
-                    fontFamily: 'zz_type_std, sans-serif',
-                    fontWeight: '900',
-                    lineHeight: '0.8',
-                    clipPath: 'inset(50% 0% 0% 0%)',
-                    transform: 'translateX(-12px)',
-                    zIndex: 1
-                  }}
-                >
-                  87
-                </div>
-              )}
             </div>
             
             {/* Date */}

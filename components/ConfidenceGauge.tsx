@@ -35,15 +35,25 @@ const ConfidenceGauge: React.FC<ConfidenceGaugeProps> = ({ confidence, className
       return x - Math.floor(x);
     };
     
-    // First 8 candles: Sharp move up
-    for (let i = 0; i < 8; i++) {
-      const volatility = 3 + random(patternSeed, i) * 8; // Wider range of volatility for more varied candle bodies
-      const trend = 1.2 + random(patternSeed, i + 10) * 0.6; // Much stronger upward trend
-      
+    // First 5 candles: 25% total upward move (but with variability - some red candles possible)
+    const targetPrice1 = currentPrice * 1.20;
+    const totalGain1 = targetPrice1 - currentPrice;
+    
+    for (let i = 0; i < 5; i++) {
       const open = currentPrice;
-      const close = open + (random(patternSeed, i + 20) - 0.1) * volatility * trend; // Stronger bias towards up
-      const high = Math.max(open, close) + random(patternSeed, i + 30) * volatility * 0.7; // Longer upper wicks
-      const low = Math.min(open, close) - random(patternSeed, i + 40) * volatility * 0.2; // Shorter lower wicks
+      
+      // Calculate how much we need to gain on average per remaining candle
+      const remaining = 5 - i;
+      const avgGainNeeded = (targetPrice1 - currentPrice) / remaining;
+      
+      // More variability - candles can be red more often
+      const candleMove = avgGainNeeded + (random(patternSeed, i + 20) - 0.5) * (avgGainNeeded * 1.2);
+      const close = open + candleMove;
+      
+      // Moderate volatility
+      const volatility = Math.abs(candleMove) * (0.2 + random(patternSeed, i + 30) * 0.3);
+      const high = Math.max(open, close) + random(patternSeed, i + 40) * volatility;
+      const low = Math.min(open, close) - random(patternSeed, i + 50) * volatility;
       
       candles.push({
         open,
@@ -56,15 +66,49 @@ const ConfidenceGauge: React.FC<ConfidenceGaugeProps> = ({ confidence, className
       currentPrice = close;
     }
     
-    // Next 34 candles: Realistic movement with no trend
-    for (let i = 8; i < 42; i++) {
-      const volatility = 1 + random(patternSeed, i) * 6; // Wider range of volatility for more varied candle bodies
-      const trend = -0.1 + random(patternSeed, i + 10) * 0.2; // No directional bias
-      
+    // Adjust to ensure we hit exactly 25% (in case randomness took us off)
+    const adjustment1 = targetPrice1 - currentPrice;
+    if (candles.length > 0) {
+      candles[4].close += adjustment1;
+      candles[4].high = Math.max(candles[4].high, candles[4].close);
+      currentPrice = candles[4].close;
+    }
+    
+    const sidewaysStart = currentPrice;
+    
+    // Next 40 candles: oscillate between -5% and +5% from current price with more ups and downs
+    const minPrice = sidewaysStart * 0.95;
+    const maxPrice = sidewaysStart * 1.05;
+    const midPrice = sidewaysStart;
+    
+    for (let i = 5; i < 45; i++) {
       const open = currentPrice;
-      const close = open + (random(patternSeed, i + 20) - 0.5) * volatility * (1 + trend);
-      const high = Math.max(open, close) + random(patternSeed, i + 30) * volatility * 0.5; // Increased wick size
-      const low = Math.min(open, close) - random(patternSeed, i + 40) * volatility * 0.5; // Increased wick size
+      
+      // Mean reversion: when near boundaries, push back toward middle
+      const distanceFromMid = (currentPrice - midPrice) / midPrice;
+      const meanReversionForce = -distanceFromMid * 0.02; // Pull back toward center
+      
+      // Random walk with mean reversion
+      const randomMove = (random(patternSeed, i + 20) - 0.5) * 0.10; // ±2% random component
+      const movePercent = randomMove + meanReversionForce;
+      
+      let close = open * (1 + movePercent);
+      
+      // Soft boundaries - allow some overshoot but with resistance
+      if (close > maxPrice) {
+        close = maxPrice - random(patternSeed, i + 30) * (maxPrice - midPrice) * 0.1;
+      } else if (close < minPrice) {
+        close = minPrice + random(patternSeed, i + 30) * (midPrice - minPrice) * 0.1;
+      }
+      
+      // Higher volatility for more dramatic candles
+      const volatility = Math.abs(close - open) * (1.2 + random(patternSeed, i + 40) * 1.8);
+      let high = Math.max(open, close) + random(patternSeed, i + 50) * volatility;
+      let low = Math.min(open, close) - random(patternSeed, i + 60) * volatility;
+      
+      // Ensure wicks create variety
+      high = Math.min(high, maxPrice * 1.02);
+      low = Math.max(low, minPrice * 0.98);
       
       candles.push({
         open,
@@ -77,15 +121,23 @@ const ConfidenceGauge: React.FC<ConfidenceGaugeProps> = ({ confidence, className
       currentPrice = close;
     }
     
-    // Last 8 candles: Sharp move up again
-    for (let i = 42; i < 50; i++) {
-      const volatility = 3 + random(patternSeed, i) * 8; // Wider range of volatility for more varied candle bodies
-      const trend = 1.2 + random(patternSeed, i + 10) * 0.6; // Much stronger upward trend
-      
+    // Last 5 candles: 30% total upward move (with variability)
+    const targetPrice2 = currentPrice * 1.20;
+    
+    for (let i = 45; i < 50; i++) {
       const open = currentPrice;
-      const close = open + (random(patternSeed, i + 20) - 0.1) * volatility * trend; // Stronger bias towards up
-      const high = Math.max(open, close) + random(patternSeed, i + 30) * volatility * 0.7; // Longer upper wicks
-      const low = Math.min(open, close) - random(patternSeed, i + 40) * volatility * 0.2; // Shorter lower wicks
+      
+      const remaining = 50 - i;
+      const avgGainNeeded = (targetPrice2 - currentPrice) / remaining;
+      
+      // More variability - less extreme individual candle moves
+      const candleMove = avgGainNeeded + (random(patternSeed, i + 20) - 0.5) * (avgGainNeeded * 1.0);
+      const close = open + candleMove;
+      
+      // Moderate volatility
+      const volatility = Math.abs(candleMove) * (0.2 + random(patternSeed, i + 30) * 0.4);
+      const high = Math.max(open, close) + random(patternSeed, i + 40) * volatility;
+      const low = Math.min(open, close) - random(patternSeed, i + 50) * volatility;
       
       candles.push({
         open,
@@ -115,7 +167,7 @@ const ConfidenceGauge: React.FC<ConfidenceGaugeProps> = ({ confidence, className
       const startTime = Date.now();
       const animate = () => {
         const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / 1500, 1); // 1.5 seconds
+        const progress = Math.min(elapsed / 3000, 1); // 3 seconds
         
         setTransitionProgress(progress);
         
@@ -129,7 +181,7 @@ const ConfidenceGauge: React.FC<ConfidenceGaugeProps> = ({ confidence, className
       };
       
       requestAnimationFrame(animate);
-    }, 5000); // Switch every 5 seconds
+    }, 7000); // Switch every 2 seconds
     
     return () => clearInterval(interval);
   }, []);
@@ -160,9 +212,9 @@ const ConfidenceGauge: React.FC<ConfidenceGaugeProps> = ({ confidence, className
   const scaleValue = (value: number) => ((value - minPrice) / priceRange) * 100;
 
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`absolute inset-0 w-full h-full pointer-events-none ${className}`}>
       {/* Chart Container - Full Width */}
-      <div className="relative h-40 w-full overflow-hidden">
+      <div className="relative h-80 w-full overflow-hidden">
         <svg
           width="100%"
           height="100%"
@@ -189,7 +241,7 @@ const ConfidenceGauge: React.FC<ConfidenceGaugeProps> = ({ confidence, className
             const candleWidth = 12; // Wider candles for better visibility with fewer total
             
             // Adjust positioning to prevent clipping - add padding for first and last candles
-            const padding = candleWidth / 2; // Half candle width for padding
+            const padding = candleWidth; // One full candle width for padding
             const availableWidth = 1000 - (padding * 2); // Available width minus padding
             const x = padding + (index / 49) * availableWidth; // Spread across available width
             const xPos = x - candleWidth / 2;
@@ -205,13 +257,17 @@ const ConfidenceGauge: React.FC<ConfidenceGaugeProps> = ({ confidence, className
             
             // Color based on active state
             const color = candle.isActive 
-              ? (isBullish ? '#00e600' : '#ff3366') // Brighter green for bullish, catchy red for bearish
+              ? (isBullish ? '#00ab00' : '#f01313') // Brighter green for bullish, catchy red for bearish
               : '#6b7280'; // Grey for inactive
             
-            // Calculate body dimensions
+            // Calculate body dimensions with minimum size constraints
             const bodyTop = Math.min(openY, closeY);
             const bodyBottom = Math.max(openY, closeY);
-            const bodyHeight = Math.abs(closeY - openY) || 0.5; // Minimum height for visibility
+            const bodyHeight = Math.max(Math.abs(closeY - openY), 1); // Minimum height of 1 unit
+            
+            // Ensure wicks have minimum length
+            const upperWickLength = Math.max(highY - bodyTop, 0.5);
+            const lowerWickLength = Math.max(bodyBottom - lowY, 0.5);
             
             return (
               <g key={index}>
