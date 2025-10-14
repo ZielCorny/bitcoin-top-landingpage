@@ -541,50 +541,50 @@ export default function Home() {
       {/* FAQ Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-center mb-12 text-primary font-sans">Frequently Asked Questions</h3>
-          <div className="max-w-6xl mx-auto">
+          <h3 className="text-3xl font-bold text-center mb-12 text-primary font-sans">Häufige Fragen</h3>
+          <div className="max-w-4xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="item-1" className="bg-card border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left text-card-foreground font-mono">
+              <AccordionItem value="item-1" className="bg-transparent">
+                <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
                   What is Bitcoin Top Score?
                 </AccordionTrigger>
-                <AccordionContent className="text-card-foreground font-mono">
+                <AccordionContent className="text-black font-mono">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="item-2" className="bg-card border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left text-card-foreground font-mono">
+              <AccordionItem value="item-2" className="bg-transparent">
+                <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
                   How is the score calculated?
                 </AccordionTrigger>
-                <AccordionContent className="text-card-foreground font-mono">
+                <AccordionContent className="text-black font-mono">
                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="item-3" className="bg-card border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left text-card-foreground font-mono">
+              <AccordionItem value="item-3" className="bg-transparent">
+                <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
                   What data sources are used?
                 </AccordionTrigger>
-                <AccordionContent className="text-card-foreground font-mono">
+                <AccordionContent className="text-black font-mono">
                   Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="item-4" className="bg-card border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left text-card-foreground font-mono">
+              <AccordionItem value="item-4" className="bg-transparent">
+                <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
                   How often is the score updated?
                 </AccordionTrigger>
-                <AccordionContent className="text-card-foreground font-mono">
+                <AccordionContent className="text-black font-mono">
                   Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="item-5" className="bg-card border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left text-card-foreground font-mono">
+              <AccordionItem value="item-5" className="bg-transparent">
+                <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
                   Can I get historical score data?
                 </AccordionTrigger>
-                <AccordionContent className="text-card-foreground font-mono">
+                <AccordionContent className="text-black font-mono">
                   At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
                 </AccordionContent>
               </AccordionItem>
@@ -593,60 +593,76 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Legal Disclaimer Section */}
-      <section className="py-12 bg-foreground/5">
+      {/* Contact & Legal Disclaimer Section */}
+      <section className="py-16 bg-black text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h3 className="text-2xl font-bold text-center mb-8 text-primary font-sans">Legal Disclaimer</h3>
-            <div className="space-y-4 text-sm text-foreground/70 font-mono">
-              <p>
-                <strong className="text-foreground">Risk Warning:</strong> Bitcoin Top provides confidence scores and trading signals for informational purposes only. Cryptocurrency trading involves substantial risk of loss and is not suitable for all investors. Past performance does not guarantee future results.
-              </p>
-              <p>
-                <strong className="text-foreground">No Financial Advice:</strong> The information provided by Bitcoin Top is not intended as financial, investment, or trading advice. You should not rely solely on our signals or scores when making investment decisions. Always conduct your own research and consider consulting with a qualified financial advisor.
-              </p>
-              <p>
-                <strong className="text-foreground">Data Accuracy:</strong> While we strive to provide accurate and up-to-date information, Bitcoin Top does not guarantee the accuracy, completeness, or timeliness of any data, scores, or signals provided. Market conditions can change rapidly and without notice.
-              </p>
-              <p>
-                <strong className="text-foreground">Limitation of Liability:</strong> Bitcoin Top and its affiliates shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from the use of our services, including but not limited to trading losses, data inaccuracies, or service interruptions.
-              </p>
-              <p>
-                <strong className="text-foreground">Regulatory Notice:</strong> Bitcoin Top is not a licensed financial services provider. Our services are provided on an "as is" basis without warranties of any kind. Users are responsible for ensuring compliance with applicable laws and regulations in their jurisdiction.
-              </p>
+            {/* Contact Information */}
+            <div className="mb-12">
+              <div className="text-sm text-white/70 font-mono mb-2">
+                Feedback / Fragen / Kommentare / Kollaborationen
+              </div>
+              <div 
+                className="text-6xl font-bold text-white mb-8"
+                style={{ 
+                  fontFamily: 'zz_type_exp, sans-serif', 
+                  letterSpacing: '-0.05em'
+                }}
+              >
+                hodl@bitcointop.de
+              </div>
+            </div>
+            
+            {/* Separator Line */}
+            <div className="border-t border-gray-400/50 mb-12"></div>
+            
+            {/* Legal Disclaimer */}
+            <div className="flex flex-col lg:flex-row gap-8">
+              <div className="lg:w-1/3">
+                <h3 
+                  className="text-xl font-bold text-white mb-4"
+                  style={{ 
+                    fontFamily: 'zz_type_exp, sans-serif',
+                    letterSpacing: '-0.05em'
+                  }}
+                >
+                  Haftungsausschluss
+                </h3>
+              </div>
+              <div className="lg:w-2/3">
+                <div 
+                  className="text-sm text-white leading-relaxed"
+                  style={{ 
+                    fontFamily: 'zz_type_mon, monospace',
+                    letterSpacing: '-0.01em'
+                  }}
+                >
+                  <p>
+                    Die Inhalte auf dieser Seite, insbesondere der bereitgestellte Bitcoin-Indikator und alle darauf basierenden Informationen, stellen <strong>keine Finanz- oder Anlageberatung</strong> dar. Alle Informationen dienen <strong>ausschließlich zu Informationszwecken</strong> und können sich jederzeit ändern. Die Indikatoren basieren auf historischen Daten und bieten <strong>keinerlei Garantie für zukünftige Marktentwicklungen oder Gewinne.</strong><br></br> Investitionen in Kryptowährungen sind mit <strong>erheblichen Risiken</strong> verbunden – ein <strong>Totalverlust</strong> des eingesetzten Kapitals ist möglich. Die Nutzung der Informationen und des Indikators erfolgt ausschließlich auf <strong>Ihr eigenes Risiko.</strong><br></br> Wir übernehmen <strong>keine Gewähr</strong> für die Richtigkeit, Vollständigkeit oder Aktualität der Daten und Indikatorsignale. Wir <strong>haften nicht</strong> für Verluste oder Schäden, die direkt oder indirekt aus der Nutzung oder Nichtnutzung der bereitgestellten Informationen entstehen. Bitte triff deine Entscheidungen eigenverantwortlich und ziehe im Zweifel einen <strong>unabhängigen Finanzberater</strong> hinzu.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Separator Line */}
+            <div className="border-t border-gray-400/50 mb-12 mt-12"></div>
+            
+            {/* Footer */}
+            <div className="mt-20 flex justify-end">
+              <div className="flex items-end space-x-2">
+                <span className="text-sm text-gray-400 font-mono mb-2">Ein Projekt von</span>
+                <Image
+                  src="/zielzone_text.svg"
+                  alt="Zielzone"
+                  width={160}
+                  height={32}
+                  className="h-8 w-auto brightness-0 invert"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border py-12">
-        <div className="container mx-auto px-4">
-          <div className="relative flex items-center justify-center min-h-[100px]">
-            {/* SVG Logo behind text */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Image
-                src="/zielzone_logo.svg"
-                alt="Zielzone Logo"
-                width={180}
-                height={180}
-                className="opacity-10"
-              />
-            </div>
-            {/* Powered by text with Zielzone SVG */}
-            <div className="relative z-10 flex items-end space-x-2">
-              <span className="text-foreground/70 text-sm font-mono">Powered by</span>
-              <Image
-                src="/zielzone_text.svg"
-                alt="Zielzone"
-                width={120}
-                height={24}
-                className="h-6 w-auto"
-              />
-            </div>
-          </div>
-        </div>
-      </footer>
 
       {/* Signup Modal */}
       {showSignup && (
