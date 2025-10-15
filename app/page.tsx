@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import TradingChartPlotly from '@/components/TradingChartPlotly'
 import ConfidenceGauge from '@/components/ConfidenceGauge'
+import FearGreedGauge from '@/components/FearGreedGauge'
+import BitcoinTopGauge from '@/components/BitcoinTopGauge'
 
 export default function Home() {
   const [formData, setFormData] = useState({ firstName: '', email: '' })
@@ -169,41 +171,26 @@ export default function Home() {
       {/* Hero Section with Score */}
       <section className="py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-mono mb-16 text-primary"
+          <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-mono mb-16 text-primary"
               style={{ 
                 fontFamily: 'zz_type_exp, sans-serif', 
                 fontWeight: '800',
                 letterSpacing: '-0.08em'
               }}>
             Bitcoin Top
-          </h2>
+          </h1>
           
-          {/* Confidence Gauge - Positioned behind content */}
+          {/* Bitcoin Top Gauge */}
+          <div className="mb-8">
+              <BitcoinTopGauge value={68} />
+          </div>
+          {/*}
           <div className="absolute top-0 left-0 w-full h-full z-0">
             <ConfidenceGauge confidence={78} className="mt-60" />
-          </div>
+          </div>*/}
           
           {/* Score Display */}
           <div className="relative flex flex-col items-center justify-center mb-12 z-10">
-            
-            {/* Large 3D Score Number */}
-            <div className="relative mb-12">
-              {/* Main Text */}
-              <div 
-                className="text-[11rem] md:text-[14rem] lg:text-[18rem] font-bold text-foreground"
-                style={{
-                  textShadow: '12px 12px 0px hsl(68, 100%, 20%), 24px 24px 0px hsl(68, 100%, 30%), 36px 36px 0px hsl(68, 100%, 40%)',
-                  fontFamily: 'zz_type_std, sans-serif',
-                  fontWeight: '900',
-                  lineHeight: '0.8'
-                }}
-              >
-                87
-              </div>
-              
-              
-            </div>
-            
             {/* Date */}
             <div className="text-xl text-foreground/70 font-mono mb-8">
               {new Date().toLocaleDateString('en-US', { 
@@ -212,9 +199,132 @@ export default function Home() {
                 year: 'numeric' 
               })}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Signal Notifications Section */}
+      <section className="py-16 bg-[#1a1a1a] relative">
+        {/* Top border line */}
+        <div className="absolute top-0 left-0 w-full h-px bg-[#42b8c1]"></div>
+        {/* Bottom border line */}
+        <div className="absolute bottom-0 left-0 w-full h-px bg-[#4285f4]"></div>
+        
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            {/* Main heading */}
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6" style={{ 
+              fontFamily: 'zz_type_exp, sans-serif', 
+              fontWeight: '600',
+              letterSpacing: '-0.02em'
+            }}>
+              Kein Top verpassen
+            </h2>
             
-            {/* Historical Values with Year's High/Low */}
-            <div className="max-w-4xl mx-auto">
+            {/* Subheading */}
+            <p className="text-xl text-white mb-8" style={{ 
+              fontFamily: 'zz_type_mon, sans-serif', 
+              fontWeight: '200'
+            }}>
+              Erhalte eine Nachricht, sobald sich etwas bewegt.
+            </p>
+            
+            {isSubmitted ? (
+              <div className="text-center py-8">
+                <div className="text-2xl font-bold text-white mb-2" style={{ 
+                  fontFamily: 'zz_type_exp, sans-serif', 
+                  fontWeight: '800'
+                }}>✓ Erfolgreich abonniert!</div>
+                <p className="text-white/70" style={{ 
+                  fontFamily: 'zz_type_exp, sans-serif'
+                }}>Du erhältst jetzt Benachrichtigungen über neue Signale.</p>
+              </div>
+            ) : isSubmitting ? (
+              <div className="text-center py-8">
+                <div className="flex justify-center mb-4">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+                </div>
+                <p className="text-white/70" style={{ 
+                  fontFamily: 'zz_type_exp, sans-serif'
+                }}>Wird abonniert...</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-2">
+                {/* Email input and button container */}
+                <div className="relative">
+                  <div className="flex rounded-full border-2 border-[#e07a5f] bg-[#1a1a1a] overflow-hidden">
+                    <input
+                      type="text"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      placeholder="Deine Email"
+                      className="flex-1 px-6 py-4 bg-transparent text-white placeholder:text-white/80 focus:outline-none"
+                      style={{ 
+                        fontFamily: 'zz_type_mon, sans-serif',
+                        fontSize: '18px'
+                      }}
+                    />
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="px-8 py-4 bg-[#f26419] text-white hover:bg-[#e55a15] transition-colors disabled:opacity-50 rounded-full m-2"
+                      style={{ 
+                        fontFamily: 'zz_type_mon, sans-serif',
+                        fontSize: '16px',
+                        letterSpacing: '0.05em'
+                      }}
+                    >
+                      {isSubmitting ? 'ABONNIEREN...' : 'JETZT ABONNIEREN'}
+                    </button>
+                  </div>
+                  
+                  {validationErrors.email && (
+                    <div className="absolute top-full left-0 mt-2 z-50">
+                      <div className="bg-white border border-gray-300 rounded-lg shadow-lg p-3 max-w-xs">
+                        <div className="flex items-start space-x-2">
+                          <div className="w-4 h-4 bg-red-500 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-white text-xs font-bold">!</span>
+                          </div>
+                          <p className="text-gray-800 text-sm leading-relaxed">{validationErrors.email}</p>
+                        </div>
+                        <div className="absolute -top-1 left-4 w-2 h-2 bg-white border-l border-t border-gray-300 transform rotate-45"></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Privacy message */}
+                <p className="text-sm text-white/60" style={{ 
+                  fontFamily: 'zz_type_mon, sans-serif'
+                }}>
+                  Wir respektieren Dein Postfach. Deine Daten bleiben privat.
+                </p>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Trading Chart Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mt-16 mb-8 text-primary" style={{ 
+            fontFamily: 'zz_type_exp, sans-serif', 
+            fontWeight: '600',
+            letterSpacing: '-0.02em'
+          }}>
+           Historische Daten
+          </h2>
+          <p className="text-xl text-center mb-16 text-foreground" style={{ 
+              fontFamily: 'zz_type_mon, sans-serif', 
+              fontWeight: '400'
+            }}>
+              So reagierte der Indikator in früheren Zyklen
+            </p>
+          {/* Historical Values with Year's High/Low */}
+          <div className="max-w-4xl mx-auto mb-8">
               {/* Layout with Year's High/Low on sides when space allows (lg and up) */}
               <div className="hidden lg:flex items-center justify-center gap-4">
                 {/* Year's Low - Left */}
@@ -294,85 +404,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Signal Notifications Section */}
-      <section className="py-8 bg-foreground/5">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            {!isSubmitted && (
-              <>
-                <h4 className="text-3xl font-bold text-center mb-4 text-primary font-sans">Unlock All Features</h4>
-                <div className="text-foreground/70 font-mono mb-6 text-center">
-                  <ul className="list-disc list-outside space-y-1 inline-block text-left pl-4">
-                    <li>Get an email notification when a signal is triggered</li>
-                    <li>Adjust the scoring behaviour</li>
-                    <li>Modify signal thresholds</li>
-                  </ul>
-                </div>
-              </>
-            )}
-            
-            {isSubmitted ? (
-              <div className="text-center py-8">
-                <div className="text-2xl font-bold text-primary font-mono mb-2">✓ Success!</div>
-                <p className="text-foreground/70 font-mono">You now have 30 day access to all features.</p>
-              </div>
-            ) : isSubmitting ? (
-              <div className="text-center py-8">
-                <div className="flex justify-center mb-4">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                </div>
-                <p className="text-foreground/70 font-mono">Unlocking features...</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-end justify-center">
-                  <div className="sm:w-80 relative">
-                    <label className="block text-sm text-foreground/70 font-mono mb-2">Email</label>
-                    <input
-                      type="text"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      onBlur={handleInputBlur}
-                      placeholder="Enter your email"
-                      className="w-full px-4 py-2 bg-foreground/5 border border-border rounded-md text-foreground font-mono placeholder:text-foreground/50 placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-primary h-10"
-                    />
-                    {validationErrors.email && (
-                      <div className="absolute top-full left-0 mt-1 z-50">
-                        <div className="bg-foreground border border-border rounded-lg shadow-lg p-3 max-w-xs">
-                          <div className="flex items-start space-x-2">
-                            <div className="w-4 h-4 bg-red-500 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <span className="text-white text-xs font-bold">!</span>
-                            </div>
-                            <p className="text-white text-sm font-mono leading-relaxed">{validationErrors.email}</p>
-                          </div>
-                          <div className="absolute -top-1 left-4 w-2 h-2 bg-foreground border-l border-t border-border transform rotate-45"></div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <Button 
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="font-sans px-4 py-2 text-sm h-10 rounded-md"
-                  >
-                    {isSubmitting ? 'Unlocking...' : 'Unlock Features'}
-                  </Button>
-                </div>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Trading Chart Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h3 className="text-3xl font-bold text-center mb-8 text-primary font-sans">Bitcoin Top Chart</h3>
           <div className="max-w-6xl mx-auto">
             {/* Chart Display */}
             <div className="bg-card border border-border rounded-lg p-6 mb-6">
@@ -546,48 +577,56 @@ export default function Home() {
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem value="item-1" className="bg-transparent">
                 <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
-                  What is Bitcoin Top Score?
+                Wie entsteht der BitcoinTop Indikator?
                 </AccordionTrigger>
                 <AccordionContent className="text-black font-mono">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Der Indikator kombiniert sieben zentrale Datenquellen aus technischer Analyse, On-Chain-Daten und makroökonomischen Faktoren. Mithilfe von Machine Learning werden diese Indikatoren gewichtet, um daraus ein möglichst präzises Gesamtbild des Marktrisikos zu berechnen.
                 </AccordionContent>
               </AccordionItem>
               
               <AccordionItem value="item-2" className="bg-transparent">
                 <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
-                  How is the score calculated?
+                Warum nur sieben Indikatoren?
                 </AccordionTrigger>
                 <AccordionContent className="text-black font-mono">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Viele Modelle nutzen 20 oder mehr Signale – aber mehr ist nicht immer besser. Unsere Tests zeigen: Nur eine fokussierte Auswahl liefert wirklich konsistente Ergebnisse. Die sieben gewählten Indikatoren bieten den besten Mix aus Präzision und Robustheit, was wir durch jahrelange Backtests belegen konnten.
                 </AccordionContent>
               </AccordionItem>
               
               <AccordionItem value="item-3" className="bg-transparent">
                 <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
-                  What data sources are used?
+                Kann der BitcoinTop die Zukunft vorhersagen?
                 </AccordionTrigger>
                 <AccordionContent className="text-black font-mono">
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                Natürlich nicht – niemand kann das. Aber unser Modell erkennt mit hoher Genauigkeit den aktuellen Zustand des Marktes: ob er überhitzt, überkauft oder in einer neutralen Zone ist. Du bekommst also eine objektive Momentaufnahme, die hilft, das Risiko besser einzuordnen.
                 </AccordionContent>
               </AccordionItem>
               
               <AccordionItem value="item-4" className="bg-transparent">
                 <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
-                  How often is the score updated?
+                Sollte ich meine Trades nach dem Indikator richten?
                 </AccordionTrigger>
                 <AccordionContent className="text-black font-mono">
-                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+                Nein. Der BitcoinTop ist kein Handelssignal, sondern ein Werkzeug zur Orientierung. Investitionsentscheidungen hängen von vielen individuellen Faktoren ab – unser Indikator soll dich dabei unterstützen, rationaler zu bleiben und Emotionen aus dem Spiel zu nehmen.
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="item-5" className="bg-transparent">
-                <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
-                  Can I get historical score data?
-                </AccordionTrigger>
-                <AccordionContent className="text-black font-mono">
-                  At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem value="item-5" className="bg-transparent">
+                  <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
+                  Wie oft wird der Indikator aktualisiert?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-black font-mono">
+                  Einmal pro Stunde. So bleibst du immer nah am Marktgeschehen, ohne ständig Charts refreshen zu müssen.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-6" className="bg-transparent">
+                  <AccordionTrigger className="text-left text-black font-mono border-b border-black pb-2 data-[state=open]:border-b-0">
+                  Wird der Indikator weiterentwickelt?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-black font-mono">
+                  Ja, ständig. Märkte verändern sich, also entwickeln wir unser Modell kontinuierlich weiter – mit neuen Daten, besseren Methoden und laufender Optimierung.
+                  </AccordionContent>
+                </AccordionItem>
             </Accordion>
           </div>
         </div>
