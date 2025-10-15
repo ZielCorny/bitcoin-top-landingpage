@@ -54,16 +54,16 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ value, className = ''
   // Starting angle: 225 degrees (bottom left)
   // Total span: 270 degrees clockwise
   // 5 segments of 52 degrees each with 4 degrees spacing
-  const startAngle = 225;
+  const startAngle = 226;
   const segmentAngle = 53;
   const spacing = 1;
   
   const segments = [
-    { name: 'BODENZONE', color: '#c4d82e', angle: startAngle },
-    { name: 'AUFSCHWUNGZONE', color: '#d4e534', angle: startAngle + segmentAngle + spacing },
-    { name: 'NEUTRALZONE', color: '#d9ea3a', angle: startAngle + 2 * (segmentAngle + spacing) },
-    { name: 'RISIKOZONE', color: '#ff5722', angle: startAngle + 3 * (segmentAngle + spacing), textColor: '#fff' },
-    { name: 'TOPZONE', color: '#c4d82e', angle: startAngle + 4 * (segmentAngle + spacing) }
+    { name: 'BODENZONE', color: 'hsl(var(--bg-subtle))', angle: startAngle },
+    { name: 'AUFSCHWUNGZONE', color: 'hsl(var(--bg-subtle))', angle: startAngle + segmentAngle + spacing },
+    { name: 'NEUTRALZONE', color: 'hsl(var(--bg-subtle))', angle: startAngle + 2 * (segmentAngle + spacing) },
+    { name: 'RISIKOZONE', color: 'hsl(var(--signal))', angle: startAngle + 3 * (segmentAngle + spacing), textColor: '#fff' },
+    { name: 'TOPZONE', color: 'hsl(var(--bg-subtle))', angle: startAngle + 4 * (segmentAngle + spacing) }
   ];
 
   return (
@@ -106,8 +106,8 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ value, className = ''
             <text
               key={`text-${index}`}
               fill={segment.textColor || '#333'}
-              fontSize="10"
-              fontWeight="700"
+              fontSize="12"
+              fontWeight="500"
             >
               <textPath href={`#segment-path-${index}`} startOffset="50%" textAnchor="middle">
                 {segment.name}
@@ -127,12 +127,13 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ value, className = ''
                 key={tickValue}
                 x={textPos.x}
                 y={textPos.y}
-                fill="#999"
+                      fill="hsl(var(--line-color))"
                 fontSize="8"
-                fontWeight="600"
+                fontWeight="400"
                 textAnchor="middle"
                 dominantBaseline="middle"
                 transform={`rotate(${angle}, ${textPos.x}, ${textPos.y})`}
+                style={{ fontFamily: 'zz_type_exp, monospace' }}
               >
                 {tickValue}
               </text>
@@ -143,12 +144,30 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ value, className = ''
           <text
             x="200"
             y="220"
-            fill="#ff5722"
+            fill="hsl(var(--signal))"
             fontSize="100"
-            fontWeight="900"
+            fontWeight="800"
+            style={{ fontFamily: 'zz_type_exp, monospace' ,letterSpacing: '-0.08em'}}
             textAnchor="middle"
           >
             {value}
+          </text>
+
+          {/* Date */}
+          <text
+            x="200"
+            y="280"
+            fill="hsl(var(--foreground) / 0.7)"
+            fontSize="12"
+            fontWeight="400"
+            style={{ fontFamily: 'zz_type_exp, monospace' }}
+            textAnchor="middle"
+          >
+            {new Date().toLocaleDateString('en-US', { 
+              month: 'long', 
+              day: 'numeric', 
+              year: 'numeric' 
+            })}
           </text>
         </svg>
       </div>

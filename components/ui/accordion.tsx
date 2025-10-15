@@ -13,7 +13,8 @@ const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn("border-b border-black", className)}
+    className={cn("border-b my-1", className)}
+    style={{ borderColor: 'hsl(var(--line-color))' }}
     {...props}
   />
 ))
@@ -27,20 +28,20 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]_.accordion-plus]:hidden [&[data-state=open]_.accordion-minus]:block",
+        "flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]_.accordion-plus]:hidden [&[data-state=open]_.accordion-minus]:block text-left text-black font-mono accordion-trigger-custom",
         className
       )}
       {...props}
     >
       {children}
-      <span className="h-4 w-4 shrink-0 flex items-center justify-center text-lg font-bold transition-transform duration-200">
+      <span className="h-8 w-8 shrink-0 flex items-center justify-center text-2xl transition-transform duration-200" style={{ color: 'hsl(var(--signal))', fontWeight: '500' }}>
         <span className="accordion-plus">+</span>
         <span className="accordion-minus hidden">-</span>
       </span>
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))
-AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
+AccordionTrigger.displayName = "AccordionPrimitive.Trigger.displayName"
 
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
@@ -48,13 +49,18 @@ const AccordionContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+    className="overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
     {...props}
   >
-    <div className={cn("pb-4 pt-0", className)}>{children}</div>
+    <div className="text-black leading-relaxed" style={{ 
+      fontFamily: 'zz_type_mon, sans-serif', 
+      fontWeight: '400',
+      fontSize: '16px',
+      paddingTop: '8px',
+      paddingBottom: '20px'
+    }}>{children}</div>
   </AccordionPrimitive.Content>
 ))
-
-AccordionContent.displayName = AccordionPrimitive.Content.displayName
+AccordionContent.displayName = "AccordionPrimitive.Content.displayName"
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }

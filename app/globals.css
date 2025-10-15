@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.accordion-trigger-custom {
+  font-family: 'zz_type_mon', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
 /* ZZ Type Standard Font Faces */
 @font-face {
 	font-family: "zz_type_std";
@@ -476,6 +484,9 @@
     --popover-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
+    --signal: 320 100% 47%; /* Signal color */
+	--line-color: 0 0% 0% / 0.35; /* Line color for borders */
+  	--bg-subtle: 0 0% 0% / 0.05; /* Subtle background color */
     
     /* Chart colors as hex values for chart libraries */
     --chart-1-hex: #FAC600;
