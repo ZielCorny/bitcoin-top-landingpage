@@ -53,7 +53,7 @@ export default function ImpressumPage() {
                 </div>
 
                 <div>
-                  <p><strong>E-Mail:</strong><br></br> hodl@bitcointop.de</p>
+                  <p><strong>E-Mail:</strong><br></br> <a href="mailto:hodl@bitcointop.de" className="text-primary hover:underline">hodl@bitcointop.de</a></p>
                 </div>
 
                 <div>

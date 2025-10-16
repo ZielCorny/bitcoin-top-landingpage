@@ -26,7 +26,7 @@ export default function ContactLegalSection() {
                 fontWeight: '600',
               }}
             >
-              hodl@bitcointop.de
+              <a href="mailto:hodl@bitcointop.de">hodl@bitcointop.de</a>
             </div>
           </div>
           
