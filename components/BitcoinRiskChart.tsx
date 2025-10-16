@@ -38,6 +38,7 @@ interface BitcoinRiskChartProps {
   height?: number
 }
 
+
 interface CSVData {
   date: string
   btc_close: number
@@ -54,7 +55,23 @@ export default function BitcoinRiskChart({
   const [isLoading, setIsLoading] = useState(true)
   const [useLogScale, setUseLogScale] = useState(true)
   const [selectedPeriod, setSelectedPeriod] = useState<number | null>(180) // 180 = 6M
+  const [signalColor, setSignalColor] = useState('hsl(20, 100%, 50%)')
+  const [signalColorAlpha, setSignalColorAlpha] = useState('hsla(20, 100%, 50%, 0.2)')
   const chartRef = useRef<ChartJS<'line'>>(null)
+
+  // Resolve CSS variables on mount
+  useEffect(() => {
+    const resolveSignalColor = () => {
+      if (typeof window !== 'undefined') {
+        const computedStyle = getComputedStyle(document.documentElement)
+        const signalValue = computedStyle.getPropertyValue('--signal').trim()
+        setSignalColor(`hsl(${signalValue})`)
+        setSignalColorAlpha(`hsla(${signalValue}, 0.2)`)
+      }
+    }
+
+    resolveSignalColor()
+  }, [])
 
   // Load CSV data
   useEffect(() => {
@@ -136,13 +153,13 @@ export default function BitcoinRiskChart({
       }
       return `${label}: ${context.parsed.y.toFixed(2)}`
     }
-  }, [useLogScale, filteredData])
+  } as any, [useLogScale, filteredData])
 
   // Memoize chart options
   const options = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
-    animation: false,
+    animation: false as const,
     interaction: {
       mode: 'index' as const,
       intersect: false,
@@ -165,7 +182,7 @@ export default function BitcoinRiskChart({
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
         titleColor: '#ffffff',
         bodyColor: '#ffffff',
-        borderColor: 'rgba(255, 255, 255, 0.1)',
+        borderColor: signalColor,
         borderWidth: 1,
         titleFont: {
           family: 'zz_type_mon, monospace',
@@ -184,14 +201,14 @@ export default function BitcoinRiskChart({
           pinch: {
             enabled: true
           },
-          mode: 'x',
+          mode: 'x' as const,
         },
         pan: {
           enabled: true,
-          mode: 'x',
+          mode: 'x' as const,
         },
         limits: {
-          x: { min: 'original', max: 'original' }
+          x: { min: 'original' as const, max: 'original' as const }
         }
       },
     },
@@ -277,7 +294,7 @@ export default function BitcoinRiskChart({
         },
       },
     },
-  }), [useLogScale, tooltipCallbacks])
+  }), [useLogScale, tooltipCallbacks, signalColor])
 
   // Memoize the chart data object
   const data = useMemo(() => ({
@@ -301,8 +318,8 @@ export default function BitcoinRiskChart({
       {
         label: 'Risk Indicator',
         data: chartData.indicatorValues,
-        borderColor: 'hsl(320, 100%, 47%)',
-        backgroundColor: 'hsla(320, 100%, 47%, 0.2)',
+        borderColor: signalColor,
+        backgroundColor: signalColorAlpha,
         fill: true,
         tension: 0.1,
         pointRadius: 0,
@@ -312,7 +329,7 @@ export default function BitcoinRiskChart({
         order: 2,
       },
     ],
-  }), [chartData])
+  }), [chartData, signalColor, signalColorAlpha])
 
   if (isLoading) {
     return (
@@ -354,28 +371,28 @@ export default function BitcoinRiskChart({
               onClick={() => handleScaleChange('linear')}
               className={`px-3 py-2 text-sm transition-colors relative ${
                 !useLogScale
-                  ? 'text-[hsl(320,100%,47%)]'
+                  ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
               }`}
               style={{ fontFamily: 'zz_type_mon, monospace' }}
             >
               Linear
               {!useLogScale && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(320,100%,47%)]"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(var(--signal))]"></div>
               )}
             </button>
             <button
               onClick={() => handleScaleChange('logarithmic')}
               className={`px-3 py-2 text-sm transition-colors relative ${
                 useLogScale
-                  ? 'text-[hsl(320,100%,47%)]'
+                  ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
               }`}
               style={{ fontFamily: 'zz_type_mon, monospace' }}
             >
               Logarithmic
               {useLogScale && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(320,100%,47%)]"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(var(--signal))]"></div>
               )}
             </button>
           </div>
@@ -387,70 +404,70 @@ export default function BitcoinRiskChart({
               onClick={() => handlePeriodChange(180)}
               className={`px-3 py-2 text-sm transition-colors relative ${
                 selectedPeriod === 180
-                  ? 'text-[hsl(320,100%,47%)]'
+                  ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
               }`}
               style={{ fontFamily: 'zz_type_mon, monospace' }}
             >
               6M
               {selectedPeriod === 180 && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(320,100%,47%)]"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(var(--signal))]"></div>
               )}
             </button>
             <button
               onClick={() => handlePeriodChange(365)}
               className={`px-3 py-2 text-sm transition-colors relative ${
                 selectedPeriod === 365
-                  ? 'text-[hsl(320,100%,47%)]'
+                  ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
               }`}
               style={{ fontFamily: 'zz_type_mon, monospace' }}
             >
               1Y
               {selectedPeriod === 365 && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(320,100%,47%)]"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(var(--signal))]"></div>
               )}
             </button>
             <button
               onClick={() => handlePeriodChange(1095)}
               className={`px-3 py-2 text-sm transition-colors relative ${
                 selectedPeriod === 1095
-                  ? 'text-[hsl(320,100%,47%)]'
+                  ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
               }`}
               style={{ fontFamily: 'zz_type_mon, monospace' }}
             >
               3Y
               {selectedPeriod === 1095 && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(320,100%,47%)]"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(var(--signal))]"></div>
               )}
             </button>
             <button
               onClick={() => handlePeriodChange(2190)}
               className={`px-3 py-2 text-sm transition-colors relative ${
                 selectedPeriod === 2190
-                  ? 'text-[hsl(320,100%,47%)]'
+                  ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
               }`}
               style={{ fontFamily: 'zz_type_mon, monospace' }}
             >
               6Y
               {selectedPeriod === 2190 && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(320,100%,47%)]"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(var(--signal))]"></div>
               )}
             </button>
             <button
               onClick={() => handlePeriodChange(null)}
               className={`px-3 py-2 text-sm transition-colors relative ${
                 selectedPeriod === null
-                  ? 'text-[hsl(320,100%,47%)]'
+                  ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
               }`}
               style={{ fontFamily: 'zz_type_mon, monospace' }}
             >
               MAX
               {selectedPeriod === null && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(320,100%,47%)]"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(var(--signal))]"></div>
               )}
             </button>
           </div>

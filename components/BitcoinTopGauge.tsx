@@ -162,8 +162,8 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ className = '' }) => 
   // Total span: 270 degrees clockwise
   // 5 segments of 52 degrees each with 4 degrees spacing
   const startAngle = 226;
-  const segmentAngle = 53;
-  const spacing = 1;
+  const segmentAngle = 52;
+  const spacing = 2;
   
   // Function to determine which segment should be active based on current value
   const getActiveSegment = (value: number) => {
@@ -252,7 +252,7 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ className = '' }) => 
             {Array.from({ length: 11 }, (_, i) => i * 10).map((tickValue, index) => {
               // Calculate angle for each tick value (0-100 maps to 225-495 degrees)
               const angle = startAngle + (tickValue / 100) * 270;
-              const textRadius = innerRadius - 7; // Position closer to the segments
+              const textRadius = innerRadius - 9; // Position closer to the segments
               const textPos = polarToCartesian(centerX, centerY, textRadius, angle);
               
               return (

@@ -484,7 +484,7 @@
     --popover-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
-    --signal: 320 100% 47%; /* Signal color */
+    --signal: 20, 100%, 50%;/*320 100% 47%;*/ /* Signal color */
 	--line-color: 0 0% 0% / 0.35; /* Line color for borders */
   	--bg-subtle: 0 0% 0% / 0.05; /* Subtle background color */
     

@@ -593,7 +593,7 @@ video {
     --popover-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
-    --signal: 320 100% 47%; /* Signal color */
+    --signal: 20, 100%, 50%;/*320 100% 47%;*/ /* Signal color */
 	--line-color: 0 0% 0% / 0.35; /* Line color for borders */
   	--bg-subtle: 0 0% 0% / 0.05; /* Subtle background color */
     
@@ -1029,10 +1029,6 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(66 184 193 / var(--tw-bg-opacity, 1));
 }
-.bg-\[hsl\(320\2c 100\%\2c 47\%\)\] {
-  --tw-bg-opacity: 1;
-  background-color: hsl(320 100% 47% / var(--tw-bg-opacity, 1));
-}
 .bg-\[hsl\(var\(--signal\)\)\] {
   background-color: hsl(var(--signal));
 }
@@ -1198,10 +1194,6 @@ video {
 }
 .tracking-tight {
   letter-spacing: -0.025em;
-}
-.text-\[hsl\(320\2c 100\%\2c 47\%\)\] {
-  --tw-text-opacity: 1;
-  color: hsl(320 100% 47% / var(--tw-text-opacity, 1));
 }
 .text-\[hsl\(var\(--signal\)\)\] {
   color: hsl(var(--signal));
