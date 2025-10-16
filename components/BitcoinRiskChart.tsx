@@ -88,10 +88,7 @@ export default function BitcoinRiskChart({
         
         uniqueData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
         
-        // Sample data for better performance - take every 3rd point for smoother performance
-        const sampledData = uniqueData.filter((_, index) => index % 3 === 0)
-        
-        setCsvData(sampledData)
+        setCsvData(uniqueData)
         setIsLoading(false)
       } catch (error) {
         console.error('Error loading CSV data:', error)

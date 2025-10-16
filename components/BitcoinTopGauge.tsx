@@ -165,6 +165,18 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ className = '' }) => 
   const segmentAngle = 53;
   const spacing = 1;
   
+  // Function to determine which segment should be active based on current value
+  const getActiveSegment = (value: number) => {
+    if (value >= 0 && value < 20) return 'BODENZONE'
+    if (value >= 20 && value < 40) return 'AUFSCHWUNGZONE'
+    if (value >= 40 && value < 60) return 'NEUTRALZONE'
+    if (value >= 60 && value < 80) return 'RISIKOZONE'
+    if (value >= 80 && value <= 100) return 'TOPZONE'
+    return 'NEUTRALZONE' // fallback
+  }
+
+  const activeSegment = gaugeData ? getActiveSegment(gaugeData.current) : 'NEUTRALZONE'
+
   const segments = [
     { name: 'BODENZONE', color: 'hsl(var(--bg-subtle))', angle: startAngle },
     { name: 'AUFSCHWUNGZONE', color: 'hsl(var(--bg-subtle))', angle: startAngle + segmentAngle + spacing },
@@ -201,19 +213,32 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ className = '' }) => 
             
             {/* Draw segments */}
             {segments.map((segment, index) => (
-              <path
-                key={index}
-                d={createSegment(centerX, centerY, innerRadius, outerRadius, segment.angle, segment.angle + segmentAngle)}
-                fill={segment.color}
-                opacity={segment.name === 'RISIKOZONE' ? 1 : 0.8}
-              />
+              <g key={index}>
+                {/* Segment fill */}
+                <path
+                  d={createSegment(centerX, centerY, innerRadius, outerRadius, segment.angle, segment.angle + segmentAngle)}
+                  fill={segment.name === activeSegment ? 'hsl(var(--signal))' : 'hsl(var(--bg-subtle))'}
+                  opacity={segment.name === activeSegment ? 0.6 : 0.8}
+                />
+                {/* Active segment border */}
+                {segment.name === activeSegment && (
+                  <path
+                    d={createSegment(centerX, centerY, innerRadius, outerRadius, segment.angle, segment.angle + segmentAngle)}
+                    fill="none"
+                    stroke="hsl(var(--signal))"
+                    strokeWidth="2"
+                    opacity={1}
+                  />
+                )}
+              </g>
             ))}
             
             {/* Zone labels curved along segments */}
             {segments.map((segment, index) => (
               <text
                 key={`text-${index}`}
-                fill={segment.textColor || '#333'}
+                fill={segment.name === activeSegment ? '#000' : '#000'}
+                opacity={segment.name === activeSegment ? 1 : 0.6}
                 fontSize="12"
                 fontWeight="500"
               >
