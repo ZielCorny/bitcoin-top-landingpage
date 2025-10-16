@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"components/BitcoinRiskChart.tsx -> ./BitcoinRiskChartContent\":{\"id\":\"components/BitcoinRiskChart.tsx -> ./BitcoinRiskChartContent\",\"files\":[\"static/chunks/_app-pages-browser_components_BitcoinRiskChartContent_tsx.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST="{}"
