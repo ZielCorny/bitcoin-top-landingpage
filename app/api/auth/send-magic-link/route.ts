@@ -5,14 +5,6 @@ import jwt from 'jsonwebtoken';
 const postmarkClient = new ServerClient(process.env.POSTMARK_SERVER_TOKEN!);
 
 export async function POST(request: NextRequest) {
-  console.log('=== ENV DEBUG START ===')
-  console.log('MAGIC_LINK_SECRET exists:', !!process.env.MAGIC_LINK_SECRET)
-  console.log('POSTMARK_SERVER_TOKEN exists:', !!process.env.POSTMARK_SERVER_TOKEN)
-  console.log('POSTMARK_FROM_EMAIL exists:', !!process.env.POSTMARK_FROM_EMAIL)
-  console.log('POSTMARK_MAGIC_LINK_TEMPLATE_ID exists:', !!process.env.POSTMARK_MAGIC_LINK_TEMPLATE_ID)
-  console.log('NEXT_PUBLIC_BASE_URL exists:', !!process.env.NEXT_PUBLIC_BASE_URL)
-  console.log('=== ENV DEBUG END ===')
-
   try {
     const { email } = await request.json();
 
