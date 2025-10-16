@@ -11,15 +11,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/impressum/page": [
+    "/api/auth/status/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/impressum/page.js"
+      "static/chunks/app/api/auth/status/route.js"
     ],
-    "/datenschutz/page": [
+    "/api/auth/send-magic-link/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/datenschutz/page.js"
+      "static/chunks/app/api/auth/send-magic-link/route.js"
+    ],
+    "/api/auth/verify/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/auth/verify/route.js"
     ]
   }
 }
