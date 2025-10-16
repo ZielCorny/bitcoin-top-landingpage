@@ -148,7 +148,7 @@ function BitcoinRiskChartContent({
   }, [filteredData, useLogScale, selectedPeriod])
 
   // Memoize tooltip callbacks for better performance
-  const tooltipCallbacks = useCallback({
+  const tooltipCallbacks = useMemo(() => ({
     label: function(context: any) {
       const label = context.dataset.label || ''
       if (label === 'BTC Price') {
@@ -172,7 +172,7 @@ function BitcoinRiskChartContent({
       }
       return `${label}: ${context.parsed.y.toFixed(2)}`
     }
-  }, [useLogScale, filteredData, selectedPeriod])
+  }), [useLogScale, filteredData, selectedPeriod])
 
   // Memoize chart options
   const options = useMemo(() => ({
