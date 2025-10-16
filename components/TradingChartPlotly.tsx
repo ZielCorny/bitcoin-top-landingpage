@@ -39,7 +39,6 @@ export default function TradingChartPlotly({
 }: TradingChartProps) {
   const [csvData, setCsvData] = useState<CSVData[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const plotRef = useRef<any>(null)
 
   // Load CSV data
   useEffect(() => {
@@ -443,7 +442,6 @@ export default function TradingChartPlotly({
     <div className={`w-full ${className}`}>
       <div style={{ height: `${height}px` }}>
         <Plot
-          ref={plotRef}
           data={traces}
           layout={layout}
           config={config}
