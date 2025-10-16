@@ -32,6 +32,7 @@ const nextConfig = {
     POSTMARK_FROM_EMAIL: process.env.POSTMARK_FROM_EMAIL,
     POSTMARK_MAGIC_LINK_TEMPLATE_ID: process.env.POSTMARK_MAGIC_LINK_TEMPLATE_ID,
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+    NODE_ENV: process.env.NODE_ENV
   },
 }
 

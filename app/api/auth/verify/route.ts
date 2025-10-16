@@ -7,7 +7,8 @@ export async function GET(request: NextRequest) {
     const token = request.nextUrl.searchParams.get('token');
 
     if (!token) {
-      return NextResponse.redirect(new URL('/', request.url));
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+      return NextResponse.redirect(new URL('/', baseUrl));
     }
 
     // Verify the magic link token
@@ -17,7 +18,8 @@ export async function GET(request: NextRequest) {
     };
 
     if (decoded.purpose !== 'magic-link') {
-      return NextResponse.redirect(new URL('/', request.url));
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+      return NextResponse.redirect(new URL('/', baseUrl));
     }
 
     // Create a session token (expires in 30 days)
@@ -37,10 +39,12 @@ export async function GET(request: NextRequest) {
       path: '/'
     });
 
-    // Redirect back to homepage
-    return NextResponse.redirect(new URL('/', request.url));
+    // Redirect back to homepage using the correct base URL
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    return NextResponse.redirect(new URL('/', baseUrl));
   } catch (error) {
     console.error('Error verifying token:', error);
-    return NextResponse.redirect(new URL('/', request.url));
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    return NextResponse.redirect(new URL('/', baseUrl));
   }
 }
