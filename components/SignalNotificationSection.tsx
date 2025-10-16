@@ -2,17 +2,6 @@
 
 import { useState, useEffect } from 'react';
 
-// Declare Cookiebot global types
-declare global {
-  interface Window {
-    Cookiebot?: {
-      consent: {
-        marketing: boolean;
-      };
-    };
-  }
-}
-
 export default function SignalNotificationSection() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -78,12 +67,6 @@ export default function SignalNotificationSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Check Cookiebot consent (if using Cookiebot)
-    if (typeof window !== 'undefined' && window.Cookiebot && !window.Cookiebot.consent.marketing) {
-      setMessage('Please accept cookies to continue');
-      return;
-    }
-
     // Validate email field
     const errors = { email: '' };
     const trimmedEmail = email.trim();
