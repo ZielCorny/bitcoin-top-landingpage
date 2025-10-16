@@ -12,7 +12,7 @@ export default function DatenschutzPage() {
             {/* BitcoinTop Logo */}
             <div className="container mx-auto px-4 text-center">
               <a href="/" className="inline-block">
-                <h1 className="text-7xl md:text-8xl lg:text-8xl xl:text-[10rem] font-mono mb-24 text-primary hover:text-primary/80 transition-colors"
+                <h1 className="text-7xl md:text-8xl lg:text-8xl xl:text-[10rem] font-mono mb-24 text-primary"
                     style={{ 
                       fontFamily: 'zz_type_exp, sans-serif', 
                       fontWeight: '800',

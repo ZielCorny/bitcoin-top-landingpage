@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function ContactLegalSection() {
   return (
@@ -73,7 +74,7 @@ export default function ContactLegalSection() {
                 fontWeight: '200',
                 fontSize: '14px'
               }}>
-                <a href="/impressum" className="hover:text-white transition-colors">IMPRESSUM</a> | <a href="/datenschutz" className="hover:text-white transition-colors">DATENSCHUTZ</a>
+                <Link href="/impressum" className="hover:text-white transition-colors">IMPRESSUM</Link> | <Link href="/datenschutz" className="hover:text-white transition-colors">DATENSCHUTZ</Link>
               </div>
             <div className="flex items-end space-x-2">
               <span className="text-white/90 font-mono mb-3 mr-6" style={{ 
