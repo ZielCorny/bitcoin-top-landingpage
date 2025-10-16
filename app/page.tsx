@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import TradingChartPlotly from '@/components/TradingChartPlotly'
+import BitcoinRiskChart from '@/components/BitcoinRiskChart'
 import ContactLegalSection from '@/components/ContactLegalSection'
 import BitcoinTopGauge from '@/components/BitcoinTopGauge'
 
@@ -19,8 +19,6 @@ export default function Home() {
   const [isSignupSubmitting, setIsSignupSubmitting] = useState(false)
   const [isSignupSubmitted, setIsSignupSubmitted] = useState(false)
   const [isUserSignedUp, setIsUserSignedUp] = useState(false)
-  const [useLogScale, setUseLogScale] = useState(true) // Default to log scale
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -182,88 +180,8 @@ export default function Home() {
           
           {/* Bitcoin Top Gauge */}
           <div className="">
-              <BitcoinTopGauge value={68} />
+              <BitcoinTopGauge />
           </div>
-           {/* Historical Values with Year's High/Low */}
-           <div className="max-w-4xl mx-auto mb-40 -mt-32">
-              {/* Layout with Year's High/Low on sides when space allows (lg and up) */}
-              <div className="hidden lg:flex items-center justify-center gap-4">
-                {/* Year's Low - Left 
-                <div className="bg-foreground/5 rounded-lg p-6 text-center min-w-[140px]">
-                  <div className="text-sm text-foreground/70 font-mono mb-2">Year&apos;s Low</div>
-                  <div className="text-2xl font-bold text-foreground font-mono">45</div>
-                </div>*/}
-                
-                {/* Historical Values Container - Center */}
-                    <div className="p-3" style={{ backgroundColor: 'hsl(var(--bg-subtle))' }}>
-                  <div className="grid grid-cols-3 gap-3">
-                    {/* Yesterday */}
-                    <div className="text-center">
-                      <div className="text-xs text-foreground/70 font-mono mb-1">Yesterday</div>
-                      <div className="text-lg font-bold text-foreground font-mono">85</div>
-                    </div>
-                    
-                    {/* Last Week */}
-                    <div className="text-center">
-                      <div className="text-xs text-foreground/70 font-mono mb-1">Last Week</div>
-                      <div className="text-lg font-bold text-foreground font-mono">82</div>
-                    </div>
-                    
-                    {/* Last Month */}
-                    <div className="text-center">
-                      <div className="text-xs text-foreground/70 font-mono mb-1">Last Month</div>
-                      <div className="text-lg font-bold text-foreground font-mono">78</div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Year's High - Right 
-                <div className="bg-foreground/5 rounded-lg p-6 text-center min-w-[140px]">
-                  <div className="text-sm text-foreground/70 font-mono mb-2">Year&apos;s High</div>
-                  <div className="text-2xl font-bold text-foreground font-mono">94</div>
-                </div>*/}
-              </div>
-              
-              {/* Stacked layout for smaller screens (below lg) */}
-              <div className="lg:hidden">
-                {/* Historical Values Container */}
-                <div className="bg-foreground/5 p-3 mb-4">
-                  <div className="grid grid-cols-3 gap-3">
-                    {/* Yesterday */}
-                    <div className="text-center">
-                      <div className="text-xs text-foreground/70 font-mono mb-1">Yesterday</div>
-                      <div className="text-lg font-bold text-foreground font-mono">85</div>
-                    </div>
-                    
-                    {/* Last Week */}
-                    <div className="text-center">
-                      <div className="text-xs text-foreground/70 font-mono mb-1">Last Week</div>
-                      <div className="text-lg font-bold text-foreground font-mono">82</div>
-                    </div>
-                    
-                    {/* Last Month */}
-                    <div className="text-center">
-                      <div className="text-xs text-foreground/70 font-mono mb-1">Last Month</div>
-                      <div className="text-lg font-bold text-foreground font-mono">78</div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Year's High/Low - Below on smaller screens, next to each other
-                <div className="flex items-center justify-center gap-4">
-                  <div className="bg-foreground/5 rounded-lg p-6 text-center flex-1 max-w-[200px]">
-                    <div className="text-sm text-foreground/70 font-mono mb-2">Year&apos;s Low</div>
-                    <div className="text-2xl font-bold text-foreground font-mono">45</div>
-                  </div>
-                  
-                  
-                  <div className="bg-foreground/5 rounded-lg p-6 text-center flex-1 max-w-[200px]">
-                    <div className="text-sm text-foreground/70 font-mono mb-2">Year&apos;s High</div>
-                    <div className="text-2xl font-bold text-foreground font-mono">94</div>
-                  </div>
-                </div> */}
-              </div>
-            </div>
           {/*}
           <div className="absolute top-0 left-0 w-full h-full z-0">
             <ConfidenceGauge confidence={78} className="mt-60" />
@@ -395,8 +313,8 @@ export default function Home() {
             </p>*/}
           <div className="max-w-6xl mx-auto">
             {/* Chart Display */}
-            <div className="bg-card border border-border p-6 mb-6">
-              <TradingChartPlotly height={700} useLogScale={useLogScale} />
+            <div className="mb-6">
+              <BitcoinRiskChart height={700} />
             </div>
             </div>
           </div>

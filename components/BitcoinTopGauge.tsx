@@ -1,13 +1,120 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import HistoricalValues from './HistoricalValues';
 
 interface BitcoinTopGaugeProps {
-  value: number; // 0-100
   className?: string;
 }
 
-const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ value, className = '' }) => {
+interface CSVData {
+  date: string
+  btc_close: number
+  btc_close_log: number
+  combined_zscore: number
+  zscore_0_100: number
+}
+
+interface GaugeData {
+  current: number
+  yesterday: number
+  lastWeek: number
+  lastMonth: number
+  currentDate: string
+}
+
+const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ className = '' }) => {
+  const [gaugeData, setGaugeData] = useState<GaugeData | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Load CSV data and calculate gauge values
+  useEffect(() => {
+    const loadGaugeData = async () => {
+      try {
+        const response = await fetch('/bitcoin-top.csv')
+        const csvText = await response.text()
+        
+        const lines = csvText.split('\n')
+        const data: CSVData[] = []
+        
+        // Skip header row
+        for (let i = 1; i < lines.length; i++) {
+          const line = lines[i].trim()
+          if (line) {
+            const [date, btc_close, btc_close_log, combined_zscore, zscore_0_100] = line.split(',')
+            data.push({
+              date,
+              btc_close: parseFloat(btc_close),
+              btc_close_log: parseFloat(btc_close_log),
+              combined_zscore: parseFloat(combined_zscore),
+              zscore_0_100: parseFloat(zscore_0_100)
+            })
+          }
+        }
+        
+        // Sort by date (most recent first)
+        data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        
+        if (data.length === 0) {
+          setIsLoading(false)
+          return
+        }
+        
+        // Get the most recent data point
+        const current = data[0]
+        const currentDate = new Date(current.date)
+        
+        // Calculate yesterday (1 day ago)
+        const yesterdayDate = new Date(currentDate)
+        yesterdayDate.setDate(yesterdayDate.getDate() - 1)
+        const yesterday = data.find(item => {
+          const itemDate = new Date(item.date)
+          return itemDate.toDateString() === yesterdayDate.toDateString()
+        })
+        
+        // Calculate last week (7 days ago)
+        const lastWeekDate = new Date(currentDate)
+        lastWeekDate.setDate(lastWeekDate.getDate() - 7)
+        const lastWeek = data.find(item => {
+          const itemDate = new Date(item.date)
+          return itemDate.toDateString() === lastWeekDate.toDateString()
+        })
+        
+        // Calculate last month (30 days ago)
+        const lastMonthDate = new Date(currentDate)
+        lastMonthDate.setDate(lastMonthDate.getDate() - 30)
+        const lastMonth = data.find(item => {
+          const itemDate = new Date(item.date)
+          return itemDate.toDateString() === lastMonthDate.toDateString()
+        })
+        
+        setGaugeData({
+          current: current.zscore_0_100,
+          yesterday: yesterday?.zscore_0_100 || current.zscore_0_100,
+          lastWeek: lastWeek?.zscore_0_100 || current.zscore_0_100,
+          lastMonth: lastMonth?.zscore_0_100 || current.zscore_0_100,
+          currentDate: current.date
+        })
+        
+        setIsLoading(false)
+      } catch (error) {
+        console.error('Error loading gauge data:', error)
+        setIsLoading(false)
+      }
+    }
+
+    loadGaugeData()
+  }, [])
+
+  if (isLoading || !gaugeData) {
+    return (
+      <div className={`relative w-full max-w-2xl mx-auto ${className}`}>
+        <div className="flex items-center justify-center h-96">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+      </div>
+    )
+  }
   // Helper function to convert polar to cartesian coordinates
   const polarToCartesian = (centerX: number, centerY: number, radius: number, angleInDegrees: number) => {
     const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
@@ -67,111 +174,120 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ value, className = ''
   ];
 
   return (
-    <div className={`relative w-full max-w-2xl mx-auto ${className}`}>
-      <div className="relative w-full aspect-square">
-        <svg viewBox="0 0 400 400" className="w-full h-full">
-          <defs>
-            {segments.map((segment, index) => {
-              const midAngle = segment.angle + segmentAngle / 2;
-              const fontSize = 10; // Font size in pixels
-              const textHeightOffset = fontSize / 2; // Half of text height
-              const textRadius = (innerRadius + outerRadius) / 2 - textHeightOffset;
-              const pathId = `segment-path-${index}`;
-              // Arc goes from end to start for text (reversed direction for bottom-to-top reading)
-              const arcPath = describeArc(centerX, centerY, textRadius, segment.angle + segmentAngle, segment.angle);
+    <>
+      <div className={`relative w-full max-w-2xl mx-auto ${className}`}>
+        <div className="relative w-full aspect-square">
+          <svg viewBox="0 0 400 400" className="w-full h-full">
+            <defs>
+              {segments.map((segment, index) => {
+                const midAngle = segment.angle + segmentAngle / 2;
+                const fontSize = 10; // Font size in pixels
+                const textHeightOffset = fontSize / 2; // Half of text height
+                const textRadius = (innerRadius + outerRadius) / 2 - textHeightOffset;
+                const pathId = `segment-path-${index}`;
+                // Arc goes from end to start for text (reversed direction for bottom-to-top reading)
+                const arcPath = describeArc(centerX, centerY, textRadius, segment.angle + segmentAngle, segment.angle);
+                
+                return (
+                  <path
+                    key={pathId}
+                    id={pathId}
+                    d={arcPath}
+                    fill="none"
+                  />
+                );
+              })}
+            </defs>
+            
+            {/* Draw segments */}
+            {segments.map((segment, index) => (
+              <path
+                key={index}
+                d={createSegment(centerX, centerY, innerRadius, outerRadius, segment.angle, segment.angle + segmentAngle)}
+                fill={segment.color}
+                opacity={segment.name === 'RISIKOZONE' ? 1 : 0.8}
+              />
+            ))}
+            
+            {/* Zone labels curved along segments */}
+            {segments.map((segment, index) => (
+              <text
+                key={`text-${index}`}
+                fill={segment.textColor || '#333'}
+                fontSize="12"
+                fontWeight="500"
+              >
+                <textPath href={`#segment-path-${index}`} startOffset="50%" textAnchor="middle">
+                  {segment.name}
+                </textPath>
+              </text>
+            ))}
+            
+            {/* Scale numbers positioned on inner side of donut */}
+            {Array.from({ length: 11 }, (_, i) => i * 10).map((tickValue, index) => {
+              // Calculate angle for each tick value (0-100 maps to 225-495 degrees)
+              const angle = startAngle + (tickValue / 100) * 270;
+              const textRadius = innerRadius - 7; // Position closer to the segments
+              const textPos = polarToCartesian(centerX, centerY, textRadius, angle);
               
               return (
-                <path
-                  key={pathId}
-                  id={pathId}
-                  d={arcPath}
-                  fill="none"
-                />
+                <text
+                  key={tickValue}
+                  x={textPos.x}
+                  y={textPos.y}
+                        fill="hsl(var(--line-color))"
+                  fontSize="8"
+                  fontWeight="400"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  transform={`rotate(${angle}, ${textPos.x}, ${textPos.y})`}
+                  style={{ fontFamily: 'zz_type_exp, monospace' }}
+                >
+                  {tickValue}
+                </text>
               );
             })}
-          </defs>
-          
-          {/* Draw segments */}
-          {segments.map((segment, index) => (
-            <path
-              key={index}
-              d={createSegment(centerX, centerY, innerRadius, outerRadius, segment.angle, segment.angle + segmentAngle)}
-              fill={segment.color}
-              opacity={segment.name === 'RISIKOZONE' ? 1 : 0.8}
-            />
-          ))}
-          
-          {/* Zone labels curved along segments */}
-          {segments.map((segment, index) => (
-            <text
-              key={`text-${index}`}
-              fill={segment.textColor || '#333'}
-              fontSize="12"
-              fontWeight="500"
-            >
-              <textPath href={`#segment-path-${index}`} startOffset="50%" textAnchor="middle">
-                {segment.name}
-              </textPath>
-            </text>
-          ))}
-          
-          {/* Scale numbers positioned on inner side of donut */}
-          {Array.from({ length: 11 }, (_, i) => i * 10).map((tickValue, index) => {
-            // Calculate angle for each tick value (0-100 maps to 225-495 degrees)
-            const angle = startAngle + (tickValue / 100) * 270;
-            const textRadius = innerRadius - 7; // Position closer to the segments
-            const textPos = polarToCartesian(centerX, centerY, textRadius, angle);
             
-            return (
-              <text
-                key={tickValue}
-                x={textPos.x}
-                y={textPos.y}
-                      fill="hsl(var(--line-color))"
-                fontSize="8"
-                fontWeight="400"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                transform={`rotate(${angle}, ${textPos.x}, ${textPos.y})`}
-                style={{ fontFamily: 'zz_type_exp, monospace' }}
-              >
-                {tickValue}
-              </text>
-            );
-          })}
-          
-          {/* Center value */}
-          <text
-            x="200"
-            y="220"
-            fill="hsl(var(--signal))"
-            fontSize="100"
-            fontWeight="800"
-            style={{ fontFamily: 'zz_type_exp, monospace' ,letterSpacing: '-0.08em'}}
-            textAnchor="middle"
-          >
-            {value}
-          </text>
+            {/* Center value */}
+            <text
+              x="200"
+              y="220"
+              fill="hsl(var(--signal))"
+              fontSize="100"
+              fontWeight="800"
+              style={{ fontFamily: 'zz_type_exp, monospace' ,letterSpacing: '-0.08em'}}
+              textAnchor="middle"
+            >
+              {Math.round(gaugeData.current)}
+            </text>
 
-          {/* Date */}
-          <text
-            x="200"
-            y="280"
-            fill="hsl(var(--foreground) / 0.7)"
-            fontSize="12"
-            fontWeight="400"
-            style={{ fontFamily: 'zz_type_exp, monospace' }}
-            textAnchor="middle"
-          >
-            {new Date().toLocaleDateString('en-US', { 
-              month: 'long', 
-              day: 'numeric', 
-              year: 'numeric' 
-            })}
-          </text>
-        </svg>
+            {/* Date */}
+            <text
+              x="200"
+              y="280"
+              fill="hsl(var(--foreground) / 0.7)"
+              fontSize="12"
+              fontWeight="400"
+              style={{ fontFamily: 'zz_type_exp, monospace' }}
+              textAnchor="middle"
+            >
+              {new Date(gaugeData.currentDate).toLocaleDateString('en-US', { 
+                month: 'long', 
+                day: 'numeric', 
+                year: 'numeric' 
+              })}
+            </text>
+          </svg>
+        </div>
       </div>
-    </div>
+      
+      {/* Historical Values Component */}
+      <HistoricalValues 
+        yesterday={Math.round(gaugeData.yesterday)}
+        lastWeek={Math.round(gaugeData.lastWeek)}
+        lastMonth={Math.round(gaugeData.lastMonth)}
+      />
+    </>
   );
 };
 
