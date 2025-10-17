@@ -56,7 +56,7 @@ export default function Home() {
             </p>*/}
           <div className="max-w-6xl mx-auto">
             {/* Chart Display */}
-            <div className="mb-6 -mx-4 sm:mx-0">
+            <div className="mb-6 mx-4">
               <BitcoinRiskChart />
             </div>
             </div>
@@ -73,13 +73,13 @@ export default function Home() {
               fontWeight: '800',
               letterSpacing: '-0.08em',
             }}>
-              Dein <span className="text-[hsl(var(--signal))]">objektiver Blick</span><br></br> auf Bitcoin.
+              Dein <span className="text-[hsl(var(--signal))]">objektiver Blick</span><span className="hidden xl:inline"><br /></span> auf Bitcoin.
             </h2>
             
-            <div className="grid items-start ml-14 mr-8" style={{ gridTemplateColumns: '17% 83%' }}>
-              <div></div>
+            <div className="ml-0 mr-0 lg:grid lg:items-start lg:ml-14 lg:mr-8" style={{ gridTemplateColumns: '17% 83%' }}>
+              <div className="hidden lg:block"></div>
             {/* Subtitle */}
-              <p className="subtitle text-black large-section-margin" style={{ 
+              <p className="subtitle text-black large-section-margin text-left" style={{ 
                 fontFamily: 'zz_type_exp, sans-serif', 
                 fontWeight: '500',
                 letterSpacing: '-0.05em',
@@ -120,12 +120,17 @@ export default function Home() {
               
               {/* Mobile layout for Section 1 */}
               <div className="md:hidden">
-                <h3 className="text-2xl font-bold text-black mb-4" style={{ 
-                  fontFamily: 'zz_type_exp, sans-serif', 
-                  fontWeight: '700'
-                }}>
-                  Was er macht
-                </h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <svg width="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
+                    <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
+                  </svg>
+                  <h3 className="text-2xl font-bold text-black" style={{ 
+                    fontFamily: 'zz_type_exp, sans-serif', 
+                    fontWeight: '700'
+                  }}>
+                    Was er macht
+                  </h3>
+                </div>
                 <p className="text-black leading-relaxed body-text" style={{ 
                   fontFamily: 'zz_type_mon, sans-serif', 
                   fontWeight: '400'
@@ -169,12 +174,17 @@ export default function Home() {
               
               {/* Mobile layout for Section 2 */}
               <div className="md:hidden">
-                <h3 className="text-2xl font-bold text-black mb-4" style={{ 
-                  fontFamily: 'zz_type_exp, sans-serif', 
-                  fontWeight: '700'
-                }}>
-                  Wie er funktioniert
-                </h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <svg width="2rem" height="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
+                    <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
+                  </svg>
+                  <h3 className="text-2xl font-bold text-black" style={{ 
+                    fontFamily: 'zz_type_exp, sans-serif', 
+                    fontWeight: '700'
+                  }}>
+                    Wie er funktioniert
+                  </h3>
+                </div>
                 <p className="text-black leading-relaxed body-text" style={{ 
                   fontFamily: 'zz_type_mon, sans-serif', 
                   fontWeight: '400'
@@ -226,12 +236,17 @@ export default function Home() {
               
               {/* Mobile layout for Section 3 */}
               <div className="md:hidden">
-                <h3 className="text-2xl font-bold text-black mb-4" style={{ 
-                  fontFamily: 'zz_type_exp, sans-serif', 
-                  fontWeight: '700'
-                }}>
-                  Wer dahinter steckt
-                </h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <svg width="2rem" height="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
+                    <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
+                  </svg>
+                  <h3 className="text-2xl font-bold text-black" style={{ 
+                    fontFamily: 'zz_type_exp, sans-serif', 
+                    fontWeight: '700'
+                  }}>
+                    Wer dahinter steckt
+                  </h3>
+                </div>
                 <p className="text-black leading-relaxed body-text" style={{ 
                   fontFamily: 'zz_type_mon, sans-serif', 
                   fontWeight: '400'

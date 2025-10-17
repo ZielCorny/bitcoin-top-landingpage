@@ -35,7 +35,7 @@ export default function ContactLegalSection() {
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="lg:w-[40%] lg:ml-24">
               <h3 
-                className="text-white/90 mb-4 disclaimer-title"
+                className="text-white/90 disclaimer-title"
                 style={{ 
                   fontFamily: 'zz_type_exp, sans-serif',
                   letterSpacing: '-0.05em',
