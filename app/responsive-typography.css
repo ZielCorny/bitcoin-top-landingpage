@@ -1,0 +1,164 @@
+/* Responsive Typography Classes */
+
+/* Main Headlines */
+.hero-title {
+  font-size: clamp(2rem, 11.8vw, 10.625rem);
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 6vw, 3.0625rem);
+}
+
+.large-title {
+  font-size: clamp(1.5rem, 10vw, 6rem);
+  line-height: 1.0;
+}
+
+.medium-title {
+  font-size: clamp(1.5rem, 6vw, 3.0625rem);
+}
+
+.small-title {
+  font-size: clamp(1rem, 2vw, 1.875rem);
+}
+
+/* Subtitles and Body Text */
+.subtitle {
+  font-size: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.body-text {
+  font-size: clamp(0.875rem, 1.1vw, 1rem);
+}
+
+.body-text-large {
+  font-size: clamp(0.875rem, 1.4vw, 1.25rem);
+}
+
+.small-text {
+  font-size: clamp(0.75rem, 0.9vw, 0.875rem);
+}
+
+.extra-small-text {
+  font-size: clamp(0.75rem, 0.7vw, 0.75rem);
+}
+
+/* Email and Contact */
+.email-address {
+  font-size: clamp(1.75rem, 6vw, 4.5rem);
+}
+
+.contact-label {
+  font-size: clamp(0.75rem, 1.1vw, 1rem);
+}
+
+/* Legal and Disclaimer */
+.disclaimer-title {
+  font-size: clamp(1rem, 2.2vw, 2rem);
+}
+
+.disclaimer-text {
+  font-size: clamp(0.75rem, 0.7vw, 0.75rem);
+}
+
+/* Section Headers */
+.section-header {
+  font-size: clamp(1rem, 2.2vw, 2rem);
+}
+
+/* Margins and Spacing */
+.hero-margin {
+  @apply mb-4 sm:mb-8 md:mb-12 lg:mb-16;
+}
+
+.hero-top-margin {
+  @apply mt-16 sm:mt-24 md:mt-32;
+}
+
+.section-top-margin {
+  @apply mt-8 sm:mt-12 md:mt-16 lg:mt-24;
+}
+
+.section-bottom-margin {
+  @apply mb-8 sm:mb-12 md:mb-16 lg:mb-24;
+}
+
+.gauge-margin {
+  @apply mb-8 sm:mb-12 md:mb-16;
+}
+
+.gauge-padding {
+  @apply px-4;
+}
+
+.container-margin {
+  @apply mb-12 sm:mb-16 md:mb-20;
+}
+
+.separator-margin {
+  @apply mb-8 sm:mb-10 md:mb-12 mt-8 sm:mt-10 md:mt-12;
+}
+
+.disclaimer-margin {
+  @apply mt-16 sm:mt-20 md:mt-24 mb-8 sm:mb-10 md:mb-12;
+}
+
+.title-container-margin {
+  @apply mb-12 sm:mb-16 md:mb-20 lg:mb-24;
+}
+
+.section-spacing-margin {
+  @apply mt-8 sm:mt-12 md:mt-16 mb-6 sm:mb-8;
+}
+
+.large-section-spacing-margin {
+  @apply mt-12 sm:mt-16 md:mt-20 lg:mt-24 mb-6 sm:mb-8;
+}
+
+.section-margin {
+  @apply mb-12 sm:mb-16 md:mb-20;
+}
+
+.large-section-margin {
+  @apply mb-16 sm:mb-20 md:mb-24;
+}
+
+.title-margin {
+  @apply mb-12 sm:mb-16 md:mb-20 lg:mb-24;
+}
+
+.section-spacing {
+  @apply mt-8 sm:mt-12 md:mt-16 mb-6 sm:mb-8;
+}
+
+.large-section-spacing {
+  @apply mt-12 sm:mt-16 md:mt-20 lg:mt-24 mb-6 sm:mb-8;
+}
+
+.disclaimer-spacing {
+  @apply mt-16 sm:mt-20 md:mt-24 mb-8 sm:mb-10 md:mb-12;
+}
+
+/* Container Spacing */
+.container-spacing {
+  @apply mb-12 sm:mb-16 md:mb-20;
+}
+
+.separator-spacing {
+  @apply mb-8 sm:mb-10 md:mb-12 mt-8 sm:mt-10 md:mt-12;
+}
+
+/* Text Alignment and Layout */
+.text-center-responsive {
+  @apply text-center px-2 sm:px-0;
+}
+
+/* Form Elements */
+.form-text {
+  font-size: clamp(0.75rem, 0.9vw, 0.875rem);
+}
+
+/* Accordion Content */
+.accordion-content {
+  font-size: clamp(0.875rem, 1.1vw, 1rem);
+}

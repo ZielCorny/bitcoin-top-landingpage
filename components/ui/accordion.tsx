@@ -52,10 +52,9 @@ const AccordionContent = React.forwardRef<
     className="overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
     {...props}
   >
-    <div className="text-black leading-relaxed" style={{ 
+    <div className="text-black leading-relaxed accordion-content" style={{ 
       fontFamily: 'zz_type_mon, sans-serif', 
       fontWeight: '400',
-      fontSize: '16px',
       paddingTop: '8px',
       paddingBottom: '20px'
     }}>{children}</div>

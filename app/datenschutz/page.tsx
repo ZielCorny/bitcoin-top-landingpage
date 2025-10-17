@@ -12,25 +12,23 @@ export default function DatenschutzPage() {
             {/* BitcoinTop Logo */}
             <div className="container mx-auto px-4 text-center">
               <a href="/" className="inline-block">
-                <h1 className="text-7xl md:text-8xl lg:text-8xl xl:text-[10rem] font-mono mb-24 text-primary"
+                <h1 className="hero-title font-mono mb-24 text-primary"
                     style={{ 
                       fontFamily: 'zz_type_exp, sans-serif', 
                       fontWeight: '800',
-                      letterSpacing: '-0.08em',
-                      fontSize: '170px'
+                      letterSpacing: '-0.08em'
                     }}>
-                  Bitcoin Top
+                  BitcoinTop
                 </h1>
               </a>
             </div>
 
             {/* Datenschutz Title */}
-            <div className="text-center mb-24">
-              <h2 className="md:text-5xl font-bold text-black" style={{ 
+            <div className="text-center title-container-margin">
+              <h2 className="section-title font-bold text-black" style={{ 
                 fontFamily: 'zz_type_exp, sans-serif', 
                 fontWeight: '600',
-                letterSpacing: '-0.08em',
-                fontSize: '49px'
+                letterSpacing: '-0.08em'
               }}>
                 Datenschutzerklärung
               </h2>
@@ -38,19 +36,17 @@ export default function DatenschutzPage() {
 
             {/* Datenschutz Content */}
             <div className="mx-auto" style={{ maxWidth: '38rem' }}>
-              <div className="space-y-8 text-black" style={{ 
+              <div className="space-y-8 text-black body-text" style={{ 
                 fontFamily: 'zz_type_mon, sans-serif', 
                 fontWeight: '400',
-                fontSize: '16px',
                 lineHeight: '1.6'
               }}>
                 {/* Section 1 */}
                 <div>
-                  <div className="mt-24 mb-8 md:text-5xl font-bold text-black" style={{ 
+                  <div className="large-section-spacing-margin section-header font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
-                    letterSpacing: '-0.08em',
-                    fontSize: '32px'
+                    letterSpacing: '-0.08em'
                   }}>
                     <p>1. Allgemeines</p>
                   </div>
@@ -68,11 +64,10 @@ export default function DatenschutzPage() {
 
                 {/* Section 2 */}
                 <div>
-                  <div className="mt-16 mb-8 md:text-5xl font-bold text-black" style={{ 
+                  <div className="section-spacing-margin section-header font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.08em',
-                    fontSize: '32px'
                   }}>
                     <p>2. Erhebung und Speicherung personenbezogener Daten</p>
                   </div>
@@ -83,11 +78,10 @@ export default function DatenschutzPage() {
 
                 {/* Section 3 */}
                 <div>
-                  <div className="mt-16 mb-8 md:text-5xl font-bold text-black" style={{ 
+                  <div className="section-spacing-margin section-header font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.08em',
-                    fontSize: '32px'
                   }}>
                     <p>3. Hosting</p>
                   </div>
@@ -104,11 +98,10 @@ export default function DatenschutzPage() {
 
                 {/* Section 4 */}
                 <div>
-                  <div className="mt-16 mb-8 md:text-5xl font-bold text-black" style={{ 
+                  <div className="section-spacing-margin section-header font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.08em',
-                    fontSize: '32px'
                   }}>
                     <p>4. Cookies und Einwilligungsmanagement</p>
                   </div>
@@ -125,11 +118,10 @@ export default function DatenschutzPage() {
 
                 {/* Section 5 */}
                 <div>
-                  <div className="mt-16 mb-8 md:text-5xl font-bold text-black" style={{ 
+                  <div className="section-spacing-margin section-header font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.08em',
-                    fontSize: '32px'
                   }}>
                     <p>5. Webanalyse mit Google Analytics</p>
                   </div>
@@ -155,11 +147,10 @@ export default function DatenschutzPage() {
 
                 {/* Section 6 */}
                 <div>
-                  <div className="mt-16 mb-8 md:text-5xl font-bold text-black" style={{ 
+                  <div className="section-spacing-margin section-header font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.08em',
-                    fontSize: '32px'
                   }}>
                     <p>6. Newsletter und E-Mail-Kommunikation (ActiveCampaign)</p>
                   </div>
@@ -185,11 +176,10 @@ export default function DatenschutzPage() {
 
                 {/* Section 7 */}
                 <div>
-                  <div className="mt-16 mb-8 md:text-5xl font-bold text-black" style={{ 
+                  <div className="section-spacing-margin section-header font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.08em',
-                    fontSize: '32px'
                   }}>
                     <p>7. Eingebettete Inhalte (YouTube)</p>
                   </div>
@@ -209,11 +199,10 @@ export default function DatenschutzPage() {
 
                 {/* Section 8 */}
                 <div>
-                  <div className="mt-16 mb-8 md:text-5xl font-bold text-black" style={{ 
+                  <div className="section-spacing-margin section-header font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.08em',
-                    fontSize: '32px'
                   }}>
                     <p>8. Ihre Rechte</p>
                   </div>
@@ -227,11 +216,10 @@ export default function DatenschutzPage() {
 
                 {/* Section 9 */}
                 <div>
-                  <div className="mt-16 mb-8 md:text-5xl font-bold text-black" style={{ 
+                  <div className="section-spacing-margin section-header font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.08em',
-                    fontSize: '32px'
                   }}>
                     <p>9. Kontaktaufnahme</p>
                   </div>
@@ -242,11 +230,10 @@ export default function DatenschutzPage() {
 
                 {/* Section 10 */}
                 <div>
-                  <div className="mt-16 mb-8 md:text-5xl font-bold text-black" style={{ 
+                  <div className="section-spacing-margin section-header font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.08em',
-                    fontSize: '32px'
                   }}>
                     <p>10. Änderungen dieser Datenschutzerklärung</p>
                   </div>

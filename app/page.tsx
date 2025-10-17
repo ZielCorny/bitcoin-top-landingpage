@@ -13,16 +13,15 @@ export default function Home() {
     <main className="min-h-screen bg-background text-foreground">
 
       {/* Hero Section with Score */}
-      <section className="mt-32">
+      <section className="hero-top-margin">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-7xl md:text-8xl lg:text-8xl xl:text-[10rem] font-mono mb-16 text-primary"
+          <h1 className="hero-title font-mono hero-margin text-primary"
               style={{ 
                 fontFamily: 'zz_type_exp, sans-serif', 
                 fontWeight: '800',
-                letterSpacing: '-0.08em',
-                fontSize: '170px'
+                letterSpacing: '-0.08em'
               }}>
-            Bitcoin Top
+            BitcoinTop
           </h1>
           
           {/* Bitcoin Top Gauge */}
@@ -42,7 +41,7 @@ export default function Home() {
       {/* Trading Chart Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-center text-primary mb-20" style={{ 
+            <h2 className="section-title font-bold text-center text-primary section-margin" style={{ 
               fontFamily: 'zz_type_exp, sans-serif', 
               fontWeight: '600',
               letterSpacing: '-0.08em'
@@ -69,7 +68,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto mt-32">
             {/* Main Title */}
-            <h2 className="text-7xl md:text-8xl lg:text-8xl font-bold mb-24 text-black" style={{ 
+            <h2 className="large-title font-bold large-section-margin text-black" style={{ 
               fontFamily: 'zz_type_exp, sans-serif', 
               fontWeight: '800',
               letterSpacing: '-0.08em',
@@ -80,12 +79,12 @@ export default function Home() {
             <div className="grid items-start ml-14 mr-8" style={{ gridTemplateColumns: '17% 83%' }}>
               <div></div>
             {/* Subtitle */}
-            <p className="text-3xl md:text-4xl text-black mb-24" style={{ 
-              fontFamily: 'zz_type_exp, sans-serif', 
-              fontWeight: '500',
-              letterSpacing: '-0.05em',
-              lineHeight: '1.2'
-            }}>
+              <p className="subtitle text-black large-section-margin" style={{ 
+                fontFamily: 'zz_type_exp, sans-serif', 
+                fontWeight: '500',
+                letterSpacing: '-0.05em',
+                lineHeight: '1.2'
+              }}>
               Niemand kann die Zukunft vorhersagen<br />
                 — aber wir können Daten nutzen, um die<br />
                 Gegenwart zu interpretieren.
@@ -93,7 +92,7 @@ export default function Home() {
             </div>
 
             {/* Content Blocks */}
-            <div className="space-y-16 ml-14 md:ml-14 ml-0">
+            <div className="space-y-16 ml-14 md:ml-14 sm:ml-0">
               {/* Section 1: Was er macht */}
               <div className="hidden md:grid items-start mr-10" style={{ gridTemplateColumns: '17% 37% 1fr' }}>
                 <div></div>
@@ -101,7 +100,7 @@ export default function Home() {
                   <svg width="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
                     <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
                   </svg>
-                  <h3 className="text-2xl md:text-3xl font-bold text-black" style={{ 
+                  <h3 className="small-title font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.05em'
@@ -110,10 +109,9 @@ export default function Home() {
                   </h3>
                 </div>
                 <div>
-                  <p className="text-black leading-relaxed" style={{ 
+                  <p className="text-black leading-relaxed body-text" style={{ 
                     fontFamily: 'zz_type_mon, sans-serif', 
-                    fontWeight: '400',
-                    fontSize: '16px'
+                    fontWeight: '400'
                   }}>
                     Der BitcoinTop Indikator zeigt dir auf einen Blick, <strong>wo sich Bitcoin im aktuellen Marktzyklus befindet</strong>. Statt dich durch Charts und Daten zu kämpfen, bekommst du eine <strong>objektive Einordnung</strong> der aktuellen Phase – verdichtet in einer Zahl zwischen <strong>0 und 100</strong>. So siehst du sofort, wie weit wir vom nächsten Top oder Boden entfernt sind, und kannst Marktbewegungen besser verstehen und einordnen.
                   </p>
@@ -128,10 +126,9 @@ export default function Home() {
                 }}>
                   Was er macht
                 </h3>
-                <p className="text-black leading-relaxed" style={{ 
+                <p className="text-black leading-relaxed body-text" style={{ 
                   fontFamily: 'zz_type_mon, sans-serif', 
-                  fontWeight: '400',
-                  fontSize: '16px'
+                  fontWeight: '400'
                 }}>
                   Der BitcoinTop Indikator zeigt dir auf einen Blick, <strong>wo sich Bitcoin im aktuellen Marktzyklus befindet</strong>. Statt Stunden in Charts, News und Sentiment-Analysen zu stecken, bekommst du eine <strong>objektive Einordnung</strong> in einer Zahl: dem <strong>BitcoinTop Risk Score</strong>. Er reicht von <strong>0 und 100</strong> – und spiegelt wider, ob <strong>Gier oder Angst</strong> gerade den Markt dominieren. So kannst du besser entscheiden, wann es Zeit ist vorsichtiger oder mutiger zu sein.
                 </p>
@@ -152,7 +149,7 @@ export default function Home() {
                   <svg width="2rem" height="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
                     <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
                   </svg>
-                  <h3 className="text-2xl md:text-3xl font-bold text-black" style={{ 
+                  <h3 className="small-title font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.05em'
@@ -161,10 +158,9 @@ export default function Home() {
                   </h3>
                 </div>
                 <div>
-                  <p className="text-black leading-relaxed" style={{ 
+                  <p className="text-black leading-relaxed body-text" style={{ 
                     fontFamily: 'zz_type_mon, sans-serif', 
-                    fontWeight: '400',
-                    fontSize: '16px'
+                    fontWeight: '400'
                   }}>
                     Unter der Haube läuft ein <strong>Machine-Learning-Modell</strong>, das sieben präzise ausgewählte Indikatoren kombiniert – aus <strong>technischer Analyse, On-Chain-Daten, Sentiment und Makro-Trends</strong>. Keine Überfrachtung, kein Datenrauschen. Nur das, was wirklich zählt. Das Ergebnis ist ein klares, konsistentes Signal mit <strong>nachweisbarem Track Record seit 2017</strong>.
                   </p>
@@ -179,10 +175,9 @@ export default function Home() {
                 }}>
                   Wie er funktioniert
                 </h3>
-                <p className="text-black leading-relaxed" style={{ 
+                <p className="text-black leading-relaxed body-text" style={{ 
                   fontFamily: 'zz_type_mon, sans-serif', 
-                  fontWeight: '400',
-                  fontSize: '16px'
+                  fontWeight: '400'
                 }}>
                   Unter der Haube läuft ein <strong>Machine-Learning-Modell</strong>, das sieben präzise ausgewählte Indikatoren kombiniert – aus <strong>technischer Analyse, On-Chain-Daten, Sentiment und Makro-Trends</strong>. Keine Überfrachtung, kein Datenrauschen. Nur das, was wirklich zählt. Das Ergebnis ist ein klares, konsistentes Signal mit <strong>nachweisbarem Track Record seit 2017</strong>.
                 </p>
@@ -203,7 +198,7 @@ export default function Home() {
                   <svg width="2rem" height="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
                     <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
                   </svg>
-                  <h3 className="text-2xl md:text-3xl font-bold text-black" style={{ 
+                  <h3 className="small-title font-bold text-black" style={{ 
                     fontFamily: 'zz_type_exp, sans-serif', 
                     fontWeight: '700',
                     letterSpacing: '-0.05em'
@@ -212,10 +207,9 @@ export default function Home() {
                   </h3>
                 </div>
                 <div>
-                  <p className="text-black leading-relaxed" style={{ 
+                  <p className="text-black leading-relaxed body-text" style={{ 
                     fontFamily: 'zz_type_mon, sans-serif', 
-                    fontWeight: '400',
-                    fontSize: '16px'
+                    fontWeight: '400'
                   }}>
                     Wir sind eine Gruppe von <strong>Bitcoin-Enthusiasten und Datennerds</strong>, die Marktzyklen verstehen wollen, statt ihnen hinterherzulaufen. Mit dem BitcoinTop Indikator teilen wir ein Werkzeug, das uns selbst hilft, klarer zu sehen und besser einzuordnen, was am Markt passiert – <strong>ohne Spekulation</strong>, <strong>ohne Hype</strong>. Ein unabhängiges Projekt für alle, die Bitcoin mit Verstand betrachten wollen.
                   </p>
@@ -238,10 +232,9 @@ export default function Home() {
                 }}>
                   Wer dahinter steckt
                 </h3>
-                <p className="text-black leading-relaxed" style={{ 
+                <p className="text-black leading-relaxed body-text" style={{ 
                   fontFamily: 'zz_type_mon, sans-serif', 
-                  fontWeight: '400',
-                  fontSize: '16px'
+                  fontWeight: '400'
                 }}>
                   Wir sind eine Gruppe von <strong>Bitcoin-Enthusiasten und Datennerds</strong>, die Marktzyklen verstehen wollen, statt ihnen hinterherzulaufen. Mit dem BitcoinTop Indikator teilen wir ein Werkzeug, das uns selbst hilft, <strong>ohne Spekulation, ohne Hype</strong> ruhiger und rationaler zu investieren. Kostenlos, transparent und offen für alle, die Bitcoin wirklich verstehen wollen.
                 </p>
@@ -254,7 +247,7 @@ export default function Home() {
       {/* FAQ Section */}
       <section className="py-16 mt-32">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-primary mb-20" style={{ 
+          <h2 className="section-title font-bold text-center text-primary section-margin" style={{ 
               fontFamily: 'zz_type_exp, sans-serif', 
               fontWeight: '600',
               letterSpacing: '-0.08em'

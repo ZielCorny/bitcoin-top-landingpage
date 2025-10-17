@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import HistoricalValues from './HistoricalValues';
 
 interface BitcoinTopGaugeProps {
   className?: string;
@@ -187,7 +186,7 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ className = '' }) => 
 
   return (
     <>
-      <div className={`relative w-full max-w-2xl mx-auto ${className}`}>
+      <div className={`relative w-full max-w-2xl mx-auto gauge-margin gauge-padding ${className}`}>
         <div className="relative w-full aspect-square">
           <svg viewBox="0 0 400 400" className="w-full h-full">
             <defs>
@@ -302,16 +301,96 @@ const BitcoinTopGauge: React.FC<BitcoinTopGaugeProps> = ({ className = '' }) => 
                 year: 'numeric' 
               })}
             </text>
+            
+            {/* Historical Values - positioned below the gauge */}
+            <g transform="translate(200, 350)">
+              {/* Background rectangle */}
+              <rect 
+                x="-90" 
+                y="-22" 
+                width="180" 
+                height="40" 
+                fill="hsl(var(--bg-subtle))" 
+              />
+              
+              {/* Yesterday */}
+              <g transform="translate(-60, 0)">
+                <text 
+                  x="0" 
+                  y="-8" 
+                  textAnchor="middle" 
+                  fontSize="7" 
+                  fill="hsl(var(--foreground) / 0.7)" 
+                  fontFamily="monospace"
+                >
+                  Yesterday
+                </text>
+                <text 
+                  x="0" 
+                  y="8" 
+                  textAnchor="middle" 
+                  fontSize="11" 
+                  fill="hsl(var(--foreground))" 
+                  fontFamily="monospace" 
+                  fontWeight="bold"
+                >
+                  {Math.round(gaugeData.yesterday)}
+                </text>
+              </g>
+              
+              {/* Last Week */}
+              <g transform="translate(0, 0)">
+                <text 
+                  x="0" 
+                  y="-8" 
+                  textAnchor="middle" 
+                  fontSize="7" 
+                  fill="hsl(var(--foreground) / 0.7)" 
+                  fontFamily="monospace"
+                >
+                  Last Week
+                </text>
+                <text 
+                  x="0" 
+                  y="8" 
+                  textAnchor="middle" 
+                  fontSize="11" 
+                  fill="hsl(var(--foreground))" 
+                  fontFamily="monospace" 
+                  fontWeight="bold"
+                >
+                  {Math.round(gaugeData.lastWeek)}
+                </text>
+              </g>
+              
+              {/* Last Month */}
+              <g transform="translate(60, 0)">
+                <text 
+                  x="0" 
+                  y="-8" 
+                  textAnchor="middle" 
+                  fontSize="7" 
+                  fill="hsl(var(--foreground) / 0.7)" 
+                  fontFamily="monospace"
+                >
+                  Last Month
+                </text>
+                <text 
+                  x="0" 
+                  y="8" 
+                  textAnchor="middle" 
+                  fontSize="11" 
+                  fill="hsl(var(--foreground))" 
+                  fontFamily="monospace" 
+                  fontWeight="bold"
+                >
+                  {Math.round(gaugeData.lastMonth)}
+                </text>
+              </g>
+            </g>
           </svg>
         </div>
       </div>
-      
-      {/* Historical Values Component */}
-      <HistoricalValues 
-        yesterday={Math.round(gaugeData.yesterday)}
-        lastWeek={Math.round(gaugeData.lastWeek)}
-        lastMonth={Math.round(gaugeData.lastMonth)}
-      />
     </>
   );
 };

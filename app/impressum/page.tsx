@@ -12,25 +12,23 @@ export default function ImpressumPage() {
             {/* BitcoinTop Logo */}
             <div className="container mx-auto px-4 text-center">
               <a href="/" className="inline-block">
-                <h1 className="text-7xl md:text-8xl lg:text-8xl xl:text-[10rem] font-mono mb-24 text-primary"
+                <h1 className="hero-title font-mono mb-24 text-primary"
                     style={{ 
                       fontFamily: 'zz_type_exp, sans-serif', 
                       fontWeight: '800',
-                      letterSpacing: '-0.08em',
-                      fontSize: '170px'
+                      letterSpacing: '-0.08em'
                     }}>
-                  Bitcoin Top
+                  BitcoinTop
                 </h1>
               </a>
             </div>
 
             {/* Impressum Title */}
-            <div className="text-center mb-24">
-              <h2 className="md:text-5xl font-bold text-black" style={{ 
+            <div className="text-center title-container-margin">
+              <h2 className="section-title font-bold text-black" style={{ 
                 fontFamily: 'zz_type_exp, sans-serif', 
                 fontWeight: '600',
-                letterSpacing: '-0.08em',
-                fontSize: '49px'
+                letterSpacing: '-0.08em'
               }}>
                 Impressum
               </h2>
@@ -38,10 +36,9 @@ export default function ImpressumPage() {
 
             {/* Impressum Content */}
             <div className="mx-auto" style={{ maxWidth: '38rem' }}>
-              <div className="space-y-8 text-black" style={{ 
+              <div className="space-y-8 text-black body-text" style={{ 
                 fontFamily: 'zz_type_mon, sans-serif', 
                 fontWeight: '400',
-                fontSize: '16px',
                 lineHeight: '1.6'
               }}>
                 <div>
@@ -74,20 +71,18 @@ export default function ImpressumPage() {
               </div>
 
               {/* Disclaimer Title */}
-              <div className="mt-24 mb-12 md:text-5xl font-bold text-black" style={{ 
+              <div className="disclaimer-margin disclaimer-title font-bold text-black" style={{ 
                   fontFamily: 'zz_type_exp, sans-serif', 
                   fontWeight: '700',
-                  letterSpacing: '-0.08em',
-                  fontSize: '32px'
+                  letterSpacing: '-0.08em'
                 }}>
                 <p>Haftungsausschluss (Disclaimer)</p>
               </div>
 
               {/* Disclaimer Content */}
-              <div className="space-y-6 text-black mb-64" style={{ 
+              <div className="space-y-6 text-black mb-64 body-text" style={{ 
                 fontFamily: 'zz_type_mon, sans-serif', 
                 fontWeight: '400',
-                fontSize: '16px',
                 lineHeight: '1.6'
               }}>
                 <p>

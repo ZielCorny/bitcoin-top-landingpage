@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import responsive typography classes */
+@import './responsive-typography.css';
+
 .accordion-trigger-custom {
   font-family: 'zz_type_mon', sans-serif;
   font-weight: 600;
