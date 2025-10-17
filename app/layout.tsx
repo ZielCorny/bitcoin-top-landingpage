@@ -7,6 +7,18 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'BitcoinTop | Dein objektiver Blick auf Bitcoin',
   description: 'Der BitcoinTop Indikator zeigt dir auf einen Blick, wo sich Bitcoin im aktuellen Marktzyklus befindet.',
+  icons: {
+    icon: [
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: { url: '/apple-touch-icon.png', sizes: '180x180' },
+  },
+  appleWebApp: {
+    title: 'BitcoinTop',
+  },
+  manifest: '/site.webmanifest',
 }
 
 export default function RootLayout({
