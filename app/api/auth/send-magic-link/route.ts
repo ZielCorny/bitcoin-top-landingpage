@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
         magic_link: magicLink,
         user_email: email,
         expiration_time: '15',
-        app_name: 'Bitcoin Top'
+        app_name: 'BitcoinTop'
     },
     MessageStream: 'outbound'
     });
