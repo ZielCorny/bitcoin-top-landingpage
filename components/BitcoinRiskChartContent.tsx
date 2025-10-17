@@ -237,7 +237,7 @@ function BitcoinRiskChartContent({
         titleFont: {
           family: 'zz_type_mon, monospace',
           size: Math.max(10.5, Math.min(18, 15 * (windowWidth / 1440))),
-          weight: 'normal'
+          weight: 'normal' as const
         },
         bodyFont: {
           family: 'zz_type_mon, monospace',
