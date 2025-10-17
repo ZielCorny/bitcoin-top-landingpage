@@ -63,7 +63,7 @@
 
 /* Section Headers */
 .section-header {
-  font-size: clamp(1rem, 2.2vw, 2rem);
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
 }
 
 /* Responsive Margins using clamp() */
@@ -84,7 +84,7 @@
 }
 
 .gauge-margin {
-  margin-bottom: clamp(2rem, 3vw, 4rem);
+  margin-bottom: clamp(2rem, 10vw, 8rem);
 }
 
 .gauge-padding {

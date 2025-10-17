@@ -177,28 +177,31 @@ function BitcoinRiskChartContent({
   const tooltipCallbacks = useMemo(() => ({
     label: function(context: any) {
       const label = context.dataset.label || ''
-      if (label === 'BTC Price') {
+      if (label === 'BTC Preis') {
         const value = useLogScale ? Math.exp(context.parsed.y) : context.parsed.y
-        return `${label}: $${value.toLocaleString()}`
+        return `${label}: $${value.toLocaleString('de-DE')}`
       }
-      if (label === 'Risk Indicator') {
-        // Get the original z-score from the sampled data point
-        const dataIndex = context.dataIndex
-        let dataToUse = filteredData
-        
-        // Apply same sampling logic as in chartData
-        if (selectedPeriod === null) {
-          dataToUse = filteredData.filter((_, index) => index % 7 === 0)
-        } else if (selectedPeriod === 2190) {
-          dataToUse = filteredData.filter((_, index) => index % 3 === 0)
-        }
-        
-        const originalZScore = dataToUse[dataIndex]?.combined_zscore || 0
-        return `${label}: ${originalZScore.toFixed(2)} (${context.parsed.y.toFixed(0)}/100)`
+      if (label === 'BitcoinTop Indikator') {
+        return `${label}: ${context.parsed.y.toFixed(0)}`
       }
       return `${label}: ${context.parsed.y.toFixed(2)}`
+    },
+    labelColor: function(context: any) {
+      const label = context.dataset.label || ''
+      if (label === 'BitcoinTop Indikator') {
+        // Ensure consistent color by using the same value for both
+        const color = signalColor
+        return {
+          borderColor: color,
+          backgroundColor: color
+        }
+      }
+      return {
+        borderColor: 'transparent',
+        backgroundColor: 'transparent'
+      }
     }
-  }), [useLogScale, filteredData, selectedPeriod])
+  }), [useLogScale, filteredData, selectedPeriod, signalColor])
 
   // Memoize chart options
   const options = useMemo(() => ({
@@ -224,20 +227,21 @@ function BitcoinRiskChartContent({
       },
       tooltip: {
         enabled: true,
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        titleColor: '#ffffff',
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+        titleColor: '#999999',
         bodyColor: '#ffffff',
-        borderColor: signalColor,
-        borderWidth: 1,
+        borderColor: '#666666',
+        borderWidth: 2,
         cornerRadius: 8,
-        displayColors: false,
+        displayColors: true,
         titleFont: {
           family: 'zz_type_mon, monospace',
-          size: getResponsiveFontSize(12),
+          size: Math.max(10.5, Math.min(18, 15 * (windowWidth / 1440))),
+          weight: 'normal'
         },
         bodyFont: {
           family: 'zz_type_mon, monospace',
-          size: getResponsiveFontSize(11),
+          size: Math.max(9.6, Math.min(16.5, 13.75 * (windowWidth / 1440))),
         },
         callbacks: tooltipCallbacks
       },
@@ -316,17 +320,18 @@ function BitcoinRiskChartContent({
               return '$' + thousands + 'k'
             }
             
-            return '$' + formattedPrice.toLocaleString()
+            // European number format: thousands with dots, decimals with commas
+            return '$' + formattedPrice.toLocaleString('de-DE')
           }
         },
         title: {
           display: windowWidth >= 640,
-          text: 'BTC Price',
+          text: 'BTC Preis',
           color: '#FFFFFF',
           position: 'top' as const,
           font: {
             family: 'zz_type_mon, monospace',
-            size: getResponsiveFontSize(12),
+            size: getResponsiveFontSize(14),
             weight: 'normal' as const
           }
         },
@@ -350,12 +355,12 @@ function BitcoinRiskChartContent({
         },
         title: {
           display: windowWidth >= 640,
-          text: 'Risk Indicator (0-100)',
+          text: 'BitcoinTop Indikator',
           color: '#FFFFFF',
           position: 'top' as const,
           font: {
             family: 'zz_type_mon, monospace',
-            size: getResponsiveFontSize(12),
+            size: getResponsiveFontSize(14),
             weight: 'normal' as const
           }
         },
@@ -369,7 +374,7 @@ function BitcoinRiskChartContent({
     datasets: [
       // BTC Price line
       {
-        label: 'BTC Price',
+        label: 'BTC Preis',
         data: chartData.priceValues,
         borderColor: '#FFFFFF',
         backgroundColor: 'transparent',
@@ -377,13 +382,15 @@ function BitcoinRiskChartContent({
         tension: 0,
         pointRadius: 0,
         pointHoverRadius: 4,
+        pointHoverBackgroundColor: '#FFFFFF',
+        pointHoverBorderColor: '#FFFFFF',
         borderWidth: 2,
         yAxisID: 'y',
         order: 1,
       },
       // Indicator area with solid color for better performance
       {
-        label: 'Risk Indicator',
+        label: 'BitcoinTop Indikator',
         data: chartData.indicatorValues,
         borderColor: signalColor,
         backgroundColor: signalColorAlpha,
@@ -391,6 +398,8 @@ function BitcoinRiskChartContent({
         tension: 0.1,
         pointRadius: 0,
         pointHoverRadius: 4,
+        pointHoverBackgroundColor: signalColor,
+        pointHoverBorderColor: signalColor,
         borderWidth: 2,
         yAxisID: 'y1',
         order: 2,
@@ -457,7 +466,7 @@ function BitcoinRiskChartContent({
               }`}
               style={{ fontFamily: 'zz_type_mon, monospace' }}
             >
-              Logarithmic
+              Logarithmisch
               {useLogScale && (
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(var(--signal))]"></div>
               )}

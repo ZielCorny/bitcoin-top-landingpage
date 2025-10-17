@@ -338,7 +338,7 @@ export default function TradingChartPlotly({
     },
     yaxis: {
       title: {
-        text: 'BTC Price ($)',
+        text: 'BTC Price',
         font: { color: '#FFFFFF' }
       },
       color: '#FFFFFF',

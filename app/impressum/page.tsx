@@ -6,13 +6,13 @@ export default function ImpressumPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
-      <section className="mt-32">
+      <section className="hero-top-margin">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* BitcoinTop Logo */}
             <div className="container mx-auto px-4 text-center">
               <a href="/" className="inline-block">
-                <h1 className="hero-title font-mono mb-24 text-primary"
+                <h1 className="hero-title font-mono hero-margin text-primary"
                     style={{ 
                       fontFamily: 'zz_type_exp, sans-serif', 
                       fontWeight: '800',
@@ -71,7 +71,7 @@ export default function ImpressumPage() {
               </div>
 
               {/* Disclaimer Title */}
-              <div className="disclaimer-margin disclaimer-title font-bold text-black" style={{ 
+              <div className="disclaimer-margin section-header font-bold text-black" style={{ 
                   fontFamily: 'zz_type_exp, sans-serif', 
                   fontWeight: '700',
                   letterSpacing: '-0.08em'
