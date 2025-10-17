@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Bitcoin Top - Frontend',
-  description: 'A modern Next.js application with Tailwind CSS and shadcn/ui',
+  title: 'BitcoinTop | Dein objektiver Blick auf Bitcoin',
+  description: 'Der BitcoinTop Indikator zeigt dir auf einen Blick, wo sich Bitcoin im aktuellen Marktzyklus befindet.',
 }
 
 export default function RootLayout({
