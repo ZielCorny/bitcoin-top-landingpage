@@ -7,6 +7,7 @@ export default function SignalNotificationSection() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
   const [validationErrors, setValidationErrors] = useState({ email: '' });
 
   // Function to check session token validity
@@ -15,10 +16,12 @@ export default function SignalNotificationSection() {
       const response = await fetch('/api/auth/status');
       const data = await response.json();
       setIsAuthenticated(data.authenticated);
+      setUserEmail(data.email || '');
       return data.authenticated;
     } catch (error) {
       console.error('Error checking session validity:', error);
       setIsAuthenticated(false);
+      setUserEmail('');
       return false;
     }
   };
@@ -167,17 +170,38 @@ export default function SignalNotificationSection() {
           </div>*/}
           
           {isAuthenticated ? (
-            <div className="text-center py-8">
-              <div className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ 
+            <div className="text-center">
+              <div className="text-white mb-4" style={{ 
                 fontFamily: 'zz_type_exp, sans-serif', 
-                fontWeight: '800',
+                fontWeight: '600',
+                fontSize: '49px',
                 letterSpacing: '-0.06em'
               }}>
-                YOU ARE ALL SET NOW
+                Du erhältst Updates
+              </div>
+              <div className="text-white/70 mb-8" style={{ 
+                fontFamily: 'zz_type_mon, sans-serif', 
+                fontWeight: '200',
+                fontSize: '20px',
+                letterSpacing: '-0.01em'
+              }}>
+                Du bist angemeldet als: <strong>{userEmail}</strong>
+              </div>
+              <div className="text-white -mr-8 -ml-8" style={{ 
+                fontFamily: 'zz_type_mon, sans-serif', 
+                fontWeight: '300',
+                fontSize: '20px',
+                lineHeight: '1.5',
+                letterSpacing: '-0.01em'
+              }}>
+                Toll, dass Du dabei bist! Wir benachrichtigen Dich, wenn es signifikante Änderungen beim BitcoinTop Indikator gibt, oder wenn wir Updates und neue Funktionen veröffentlichen.
+              </div>
+              <div className="flex justify-center -mb-12">
+                <img src="/dog.gif" alt="Dog animation" className="max-w-xl w-full" />
               </div>
             </div>
           ) : message && message.includes('Check your email') ? (
-            <div className="text-center py-8">
+            <div className="text-center">
               <h2 className="text-white mb-8" style={{ 
                 fontFamily: 'zz_type_exp, sans-serif', 
                 fontWeight: '600',
