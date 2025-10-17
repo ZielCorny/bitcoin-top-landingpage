@@ -9,7 +9,7 @@ const BitcoinRiskChart = dynamic(
     loading: () => (
       <div className="w-full">
         <div className="bg-black border border-gray-700 p-6">
-          <div className="flex items-center justify-center" style={{ height: '494px' }}>
+          <div className="flex items-center justify-center" style={{ height: 'clamp(300px, 40vw, 700px)' }}>
             <div className="text-white">Loading chart...</div>
           </div>
         </div>

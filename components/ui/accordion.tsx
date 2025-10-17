@@ -13,7 +13,7 @@ const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn("border-b my-1", className)}
+    className={cn("border-b my-1 sm:my-2", className)}
     style={{ borderColor: 'hsl(var(--line-color))' }}
     {...props}
   />
@@ -28,13 +28,13 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]_.accordion-plus]:hidden [&[data-state=open]_.accordion-minus]:block text-left text-black font-mono accordion-trigger-custom",
+        "flex flex-1 items-center justify-between py-3 sm:py-4 px-2 sm:px-4 font-medium transition-all [&[data-state=open]_.accordion-plus]:hidden [&[data-state=open]_.accordion-minus]:block text-left text-black font-mono accordion-trigger-custom",
         className
       )}
       {...props}
     >
       {children}
-      <span className="h-8 w-8 shrink-0 flex items-center justify-center text-2xl transition-transform duration-200" style={{ color: 'hsl(var(--signal))', fontWeight: '500' }}>
+      <span className="h-6 w-6 sm:h-8 sm:w-8 shrink-0 flex items-center justify-center text-lg sm:text-2xl transition-transform duration-200" style={{ color: 'hsl(var(--signal))', fontWeight: '500' }}>
         <span className="accordion-plus">+</span>
         <span className="accordion-minus hidden">-</span>
       </span>
@@ -52,11 +52,11 @@ const AccordionContent = React.forwardRef<
     className="overflow-hidden transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
     {...props}
   >
-    <div className="text-black leading-relaxed accordion-content" style={{ 
+    <div className="text-black leading-relaxed accordion-content px-2 sm:px-4" style={{ 
       fontFamily: 'zz_type_mon, sans-serif', 
       fontWeight: '400',
       paddingTop: '8px',
-      paddingBottom: '20px'
+      paddingBottom: '16px'
     }}>{children}</div>
   </AccordionPrimitive.Content>
 ))

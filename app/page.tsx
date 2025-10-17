@@ -39,7 +39,7 @@ export default function Home() {
       <SignalNotificationSection />
 
       {/* Trading Chart Section */}
-      <section className="py-16">
+      <section className="section-padding">
         <div className="container mx-auto px-4">
             <h2 className="section-title font-bold text-center text-primary section-margin" style={{ 
               fontFamily: 'zz_type_exp, sans-serif', 
@@ -56,17 +56,17 @@ export default function Home() {
             </p>*/}
           <div className="max-w-6xl mx-auto">
             {/* Chart Display */}
-            <div className="mb-6">
-              <BitcoinRiskChart height={700} />
+            <div className="mb-6 -mx-4 sm:mx-0">
+              <BitcoinRiskChart />
             </div>
             </div>
           </div>
         </section>
 
       {/* BitcoinTop Info Section */}
-      <section className="py-20">
+      <section className="section-padding-large">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto mt-32">
+          <div className="max-w-6xl mx-auto" style={{ marginTop: 'clamp(4rem, 8vw, 8rem)' }}>
             {/* Main Title */}
             <h2 className="large-title font-bold large-section-margin text-black" style={{ 
               fontFamily: 'zz_type_exp, sans-serif', 
@@ -92,7 +92,7 @@ export default function Home() {
             </div>
 
             {/* Content Blocks */}
-            <div className="space-y-16 ml-14 md:ml-14 sm:ml-0">
+            <div className="sm:ml-0 md:ml-14" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(2rem, 3vw, 4rem)' }}>
               {/* Section 1: Was er macht */}
               <div className="hidden md:grid items-start mr-10" style={{ gridTemplateColumns: '17% 37% 1fr' }}>
                 <div></div>
@@ -245,7 +245,7 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 mt-32">
+      <section className="section-padding" style={{ marginTop: 'clamp(2rem, 6vw, 8rem)' }}>
         <div className="container mx-auto px-4">
           <h2 className="section-title font-bold text-center text-primary section-margin" style={{ 
               fontFamily: 'zz_type_exp, sans-serif', 
@@ -255,7 +255,7 @@ export default function Home() {
               Häufige Fragen
           </h2>
             <div className="mx-auto" style={{ maxWidth: '47rem' }}>
-            <Accordion type="single" collapsible className="space-y-1">
+            <Accordion type="single" collapsible className="space-y-1 sm:space-y-2">
               <AccordionItem value="item-1" className="bg-transparent">
                  <AccordionTrigger>
                 Wie entsteht der BitcoinTop Indikator?

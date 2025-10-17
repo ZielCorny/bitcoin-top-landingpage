@@ -19,12 +19,12 @@
 }
 
 .small-title {
-  font-size: clamp(1rem, 2vw, 1.875rem);
+  font-size: clamp(1.35rem, 2vw, 1.875rem);
 }
 
 /* Subtitles and Body Text */
 .subtitle {
-  font-size: clamp(1.25rem, 3vw, 2.5rem);
+  font-size: clamp(1.2rem, 4vw, 2.5rem);
 }
 
 .body-text {
@@ -66,53 +66,78 @@
   font-size: clamp(1rem, 2.2vw, 2rem);
 }
 
-/* Margins and Spacing */
+/* Responsive Margins using clamp() */
 .hero-margin {
-  @apply mb-4 sm:mb-8 md:mb-12 lg:mb-16;
+  margin-bottom: clamp(1rem, 2.5vw, 4rem);
 }
 
 .hero-top-margin {
-  @apply mt-16 sm:mt-24 md:mt-32;
+  margin-top: clamp(2rem, 6vw, 8rem);
 }
 
 .section-top-margin {
-  @apply mt-8 sm:mt-12 md:mt-16 lg:mt-24;
+  margin-top: clamp(2rem, 4vw, 6rem);
 }
 
 .section-bottom-margin {
-  @apply mb-8 sm:mb-12 md:mb-16 lg:mb-24;
+  margin-bottom: clamp(2rem, 4vw, 6rem);
 }
 
 .gauge-margin {
-  @apply mb-8 sm:mb-12 md:mb-16;
+  margin-bottom: clamp(2rem, 3vw, 4rem);
 }
 
 .gauge-padding {
-  @apply px-4;
+  padding-left: clamp(1rem, 2vw, 1.5rem);
+  padding-right: clamp(1rem, 2vw, 1.5rem);
 }
 
 .container-margin {
-  @apply mb-12 sm:mb-16 md:mb-20;
+  margin-bottom: clamp(3rem, 5vw, 5rem);
 }
 
 .separator-margin {
-  @apply mb-8 sm:mb-10 md:mb-12 mt-8 sm:mt-10 md:mt-12;
+  margin-top: clamp(2rem, 3vw, 3rem);
+  margin-bottom: clamp(2rem, 3vw, 3rem);
 }
 
 .disclaimer-margin {
-  @apply mt-16 sm:mt-20 md:mt-24 mb-8 sm:mb-10 md:mb-12;
+  margin-top: clamp(4rem, 6vw, 6rem);
+  margin-bottom: clamp(2rem, 3vw, 3rem);
 }
 
 .title-container-margin {
-  @apply mb-12 sm:mb-16 md:mb-20 lg:mb-24;
+  margin-bottom: clamp(3rem, 5vw, 6rem);
 }
 
 .section-spacing-margin {
-  @apply mt-8 sm:mt-12 md:mt-16 mb-6 sm:mb-8;
+  margin-top: clamp(2rem, 3vw, 4rem);
+  margin-bottom: clamp(1.5rem, 2vw, 2rem);
 }
 
 .large-section-spacing-margin {
-  @apply mt-12 sm:mt-16 md:mt-20 lg:mt-24 mb-6 sm:mb-8;
+  margin-top: clamp(3rem, 5vw, 6rem);
+  margin-bottom: clamp(1.5rem, 2vw, 2rem);
+}
+
+/* Section padding using clamp() */
+.section-padding {
+  padding-top: clamp(2rem, 4vw, 5rem);
+  padding-bottom: clamp(2rem, 4vw, 5rem);
+}
+
+.section-padding-large {
+  padding-top: clamp(3rem, 6vw, 6rem);
+  padding-bottom: clamp(3rem, 6vw, 6rem);
+}
+
+/* Content spacing using clamp() */
+.content-spacing {
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.content-spacing-large {
+  gap: clamp(2rem, 4vw, 4rem);
 }
 
 .section-margin {
@@ -120,7 +145,7 @@
 }
 
 .large-section-margin {
-  @apply mb-16 sm:mb-20 md:mb-24;
+  @apply mb-8 sm:mb-12 md:mb-16 lg:mb-24 xl:mb-32;
 }
 
 .title-margin {

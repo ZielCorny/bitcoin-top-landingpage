@@ -48,7 +48,7 @@ interface CSVData {
 
 function BitcoinRiskChartContent({ 
   className = '', 
-  height = 494 
+  height 
 }: BitcoinRiskChartProps) {
   const [csvData, setCsvData] = useState<CSVData[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -56,7 +56,13 @@ function BitcoinRiskChartContent({
   const [selectedPeriod, setSelectedPeriod] = useState<number | null>(180) // 180 = 6M
   const [signalColor, setSignalColor] = useState('hsl(20, 100%, 50%)')
   const [signalColorAlpha, setSignalColorAlpha] = useState('hsla(20, 100%, 50%, 0.2)')
+  const [windowWidth, setWindowWidth] = useState(1440)
   const chartRef = useRef<ChartJS<'line'>>(null)
+
+  // Calculate responsive font sizes based on viewport width
+  const getResponsiveFontSize = useCallback((baseSize: number) => {
+    return Math.max(baseSize * 0.7, Math.min(baseSize * 1.2, baseSize * (windowWidth / 1440)))
+  }, [windowWidth])
 
   // Resolve CSS variables on mount
   useEffect(() => {
@@ -71,6 +77,26 @@ function BitcoinRiskChartContent({
 
     resolveSignalColor()
   }, [])
+
+  // Handle window resize for responsive font sizing
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth)
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  // Force chart update when windowWidth changes
+  useEffect(() => {
+    if (chartRef.current) {
+      chartRef.current.update()
+    }
+  }, [windowWidth])
 
   // Load CSV data
   useEffect(() => {
@@ -203,11 +229,15 @@ function BitcoinRiskChartContent({
         bodyColor: '#ffffff',
         borderColor: signalColor,
         borderWidth: 1,
+        cornerRadius: 8,
+        displayColors: false,
         titleFont: {
           family: 'zz_type_mon, monospace',
+          size: getResponsiveFontSize(12),
         },
         bodyFont: {
           family: 'zz_type_mon, monospace',
+          size: getResponsiveFontSize(11),
         },
         callbacks: tooltipCallbacks
       },
@@ -252,6 +282,7 @@ function BitcoinRiskChartContent({
           maxTicksLimit: 8,
           font: {
             family: 'zz_type_mon, monospace',
+            size: getResponsiveFontSize(10),
           },
         },
       },
@@ -266,21 +297,36 @@ function BitcoinRiskChartContent({
           color: '#FFFFFF',
           font: {
             family: 'zz_type_mon, monospace',
+            size: getResponsiveFontSize(10),
           },
           callback: function(value: any) {
+            let price: number
             if (useLogScale) {
-              return '$' + Math.exp(value).toLocaleString()
+              price = Math.exp(value)
+            } else {
+              price = value
             }
-            return '$' + value.toLocaleString()
+            
+            // Format price without decimals
+            const formattedPrice = Math.round(price)
+            
+            // Abbreviate large numbers on narrow viewports
+            if (windowWidth < 640 && formattedPrice >= 1000) {
+              const thousands = Math.round(formattedPrice / 1000)
+              return '$' + thousands + 'k'
+            }
+            
+            return '$' + formattedPrice.toLocaleString()
           }
         },
         title: {
-          display: true,
+          display: windowWidth >= 640,
           text: 'BTC Price',
           color: '#FFFFFF',
+          position: 'top' as const,
           font: {
             family: 'zz_type_mon, monospace',
-            size: 12,
+            size: getResponsiveFontSize(12),
             weight: 'normal' as const
           }
         },
@@ -299,21 +345,23 @@ function BitcoinRiskChartContent({
           stepSize: 20,
           font: {
             family: 'zz_type_mon, monospace',
+            size: getResponsiveFontSize(10),
           },
         },
         title: {
-          display: true,
+          display: windowWidth >= 640,
           text: 'Risk Indicator (0-100)',
           color: '#FFFFFF',
+          position: 'top' as const,
           font: {
             family: 'zz_type_mon, monospace',
-            size: 12,
+            size: getResponsiveFontSize(12),
             weight: 'normal' as const
           }
         },
       },
     },
-  }), [useLogScale, tooltipCallbacks, signalColor])
+  }), [useLogScale, tooltipCallbacks, signalColor, getResponsiveFontSize, windowWidth])
 
   // Memoize the chart data object
   const data = useMemo(() => ({
@@ -353,7 +401,7 @@ function BitcoinRiskChartContent({
   if (isLoading) {
     return (
       <div className={`w-full ${className}`}>
-        <div className="flex items-center justify-center" style={{ height: `${height}px` }}>
+        <div className="flex items-center justify-center" style={{ height: height ? `${height}px` : 'clamp(300px, 40vw, 700px)' }}>
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
         </div>
       </div>
@@ -377,18 +425,18 @@ function BitcoinRiskChartContent({
 
   return (
     <div className={`w-full ${className}`}>
-      <div className="bg-black border border-gray-700 p-6">
+      <div className="bg-black border border-gray-700 px-2 py-6 sm:px-6">
         {/* Chart */}
-        <div style={{ height: `${height}px`, width: '100%' }}>
+        <div style={{ height: height ? `${height}px` : 'clamp(300px, 40vw, 700px)', width: '100%' }}>
           <Line ref={chartRef} data={data} options={options} />
         </div>
 
         {/* Controls */}
-        <div className="flex items-center justify-center gap-8 mt-4 flex-wrap">
-          <div className="flex items-center gap-4">
+        <div className="flex items-center justify-center gap-2 sm:gap-6 md:gap-8 mt-4 flex-wrap [&>*:nth-child(2)]:hidden [&>*:nth-child(2)]:sm:block">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={() => handleScaleChange('linear')}
-              className={`px-3 py-2 text-sm transition-colors relative ${
+              className={`px-2 sm:px-3 py-2 text-xs sm:text-sm transition-colors relative ${
                 !useLogScale
                   ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
@@ -402,7 +450,7 @@ function BitcoinRiskChartContent({
             </button>
             <button
               onClick={() => handleScaleChange('logarithmic')}
-              className={`px-3 py-2 text-sm transition-colors relative ${
+              className={`px-2 sm:px-3 py-2 text-xs sm:text-sm transition-colors relative ${
                 useLogScale
                   ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
@@ -416,12 +464,12 @@ function BitcoinRiskChartContent({
             </button>
           </div>
 
-          <div className="w-px h-6 bg-gray-600"></div>
+          <div className="w-px h-6 bg-gray-600 flex-shrink-0"></div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={() => handlePeriodChange(180)}
-              className={`px-3 py-2 text-sm transition-colors relative ${
+              className={`px-2 sm:px-3 py-2 text-xs sm:text-sm transition-colors relative ${
                 selectedPeriod === 180
                   ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
@@ -435,7 +483,7 @@ function BitcoinRiskChartContent({
             </button>
             <button
               onClick={() => handlePeriodChange(1095)}
-              className={`px-3 py-2 text-sm transition-colors relative ${
+              className={`px-2 sm:px-3 py-2 text-xs sm:text-sm transition-colors relative ${
                 selectedPeriod === 1095
                   ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
@@ -449,7 +497,7 @@ function BitcoinRiskChartContent({
             </button>
             <button
               onClick={() => handlePeriodChange(2190)}
-              className={`px-3 py-2 text-sm transition-colors relative ${
+              className={`px-2 sm:px-3 py-2 text-xs sm:text-sm transition-colors relative ${
                 selectedPeriod === 2190
                   ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
@@ -463,7 +511,7 @@ function BitcoinRiskChartContent({
             </button>
             <button
               onClick={() => handlePeriodChange(null)}
-              className={`px-3 py-2 text-sm transition-colors relative ${
+              className={`px-2 sm:px-3 py-2 text-xs sm:text-sm transition-colors relative ${
                 selectedPeriod === null
                   ? 'text-[hsl(var(--signal))]'
                   : 'text-gray-400 hover:text-gray-300'
