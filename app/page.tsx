@@ -56,7 +56,7 @@ export default function Home() {
             </p>*/}
           <div className="max-w-6xl mx-auto">
             {/* Chart Display */}
-            <div className="mb-6 mx-4">
+            <div className="mb-6 ml-0 mr-0">
               <BitcoinRiskChart />
             </div>
             </div>
