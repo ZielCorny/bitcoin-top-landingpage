@@ -97,7 +97,7 @@ export default function Home() {
               <div className="hidden md:grid items-start mr-10" style={{ gridTemplateColumns: '17% 37% 1fr' }}>
                 <div></div>
                 <div className="flex flex-col gap-2">
-                  <svg width="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
+                  <svg width="32" height="20" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
                     <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
                   </svg>
                   <h3 className="small-title font-bold text-black" style={{ 
@@ -121,7 +121,7 @@ export default function Home() {
               {/* Mobile layout for Section 1 */}
               <div className="md:hidden">
                 <div className="flex flex-col gap-2 mb-4">
-                  <svg width="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
+                  <svg width="32" height="20" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
                     <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
                   </svg>
                   <h3 className="text-2xl font-bold text-black" style={{ 
@@ -151,7 +151,7 @@ export default function Home() {
               <div className="hidden md:grid items-start mr-10" style={{ gridTemplateColumns: '17% 37% 1fr' }}>
                 <div></div>
                 <div className="flex flex-col gap-2">
-                  <svg width="2rem" height="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
+                  <svg width="32" height="32" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
                     <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
                   </svg>
                   <h3 className="small-title font-bold text-black" style={{ 
@@ -175,7 +175,7 @@ export default function Home() {
               {/* Mobile layout for Section 2 */}
               <div className="md:hidden">
                 <div className="flex flex-col gap-2 mb-4">
-                  <svg width="2rem" height="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
+                  <svg width="32" height="32" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
                     <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
                   </svg>
                   <h3 className="text-2xl font-bold text-black" style={{ 
@@ -205,7 +205,7 @@ export default function Home() {
               <div className="hidden md:grid items-start mr-10" style={{ gridTemplateColumns: '17% 37% 1fr' }}>
                 <div></div>
                 <div className="flex flex-col gap-2">
-                  <svg width="2rem" height="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
+                  <svg width="32" height="32" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
                     <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
                   </svg>
                   <h3 className="small-title font-bold text-black" style={{ 
@@ -237,7 +237,7 @@ export default function Home() {
               {/* Mobile layout for Section 3 */}
               <div className="md:hidden">
                 <div className="flex flex-col gap-2 mb-4">
-                  <svg width="2rem" height="2rem" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
+                  <svg width="32" height="32" viewBox="0 0 138 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: 'hsl(var(--signal))' }}>
                     <path d="M138 45L92.8519 90L80.5852 77.6038L104.778 53.4906H0V36.5094H104.778L80.5852 12.2264L92.8519 0L138 45Z" fill="currentColor"/>
                   </svg>
                   <h3 className="text-2xl font-bold text-black" style={{ 
