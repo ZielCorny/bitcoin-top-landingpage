@@ -273,6 +273,55 @@ export default function Home() {
             <Accordion type="single" collapsible className="space-y-1 sm:space-y-2">
               <AccordionItem value="item-1" className="bg-transparent">
                  <AccordionTrigger>
+                Zeigt der Indikator den Zyklus Top an?
+                </AccordionTrigger>
+                <AccordionContent>
+                Nein! Der Bitcoin Top Indikator nimmt alle Emotionen aus Kauf- und Verkaufsentscheidungen. Unsere Risk Metric macht schwere Entscheidungen einfach. Ziel ist es die besten Kauf- und Verkaufschancen im Bitcoin Zyklus zu identifizieren und Situationen mit einem extrem guten Chance/Risiko Verhältnis wahrnehmen zu können.
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-2" className="bg-transparent">
+                 <AccordionTrigger>
+                Was bedeutet ein Indikatorwert von 100? Ist das der Zyklus Top?
+                </AccordionTrigger>
+                <AccordionContent>
+                Nein. Leider ist es nicht so einfach 😉 Es zeigt lediglich an, dass der markt aktuell komplett überhitzt ist und aktuell ein sehr schlechtes Chance/Risiko Verhältnis besteht.
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-3" className="bg-transparent">
+                 <AccordionTrigger>
+                Treffen wir jedes Kaufsignal?
+                </AccordionTrigger>
+                <AccordionContent>
+                Nein, das hier ist kein Daytrading Service 😉 es geht darum die Kaufzonen mit dem besten Chance - Risiko Verhältnis zu finden. Weniger ist mehr.
+                Für kurzfristiger orientierte Anleger und Trader gibt es zahlreiche andere Tools.
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-4" className="bg-transparent">
+                 <AccordionTrigger>
+                Was unterscheidet uns von anderen Indikatoren?
+                </AccordionTrigger>
+                <AccordionContent>
+                Wir bilden eine holistische Sicht der Marktlage ab. Kerninformationen aus dem Cryptomarkt verschmelzen dabei mit Macro- und Sentimentdaten. Das erlaubt uns, schnell auf Veränderungen zu reagieren und auch auf nicht-zyklische Signale zu triggern.                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-5" className="bg-transparent">
+                 <AccordionTrigger>
+                Was sagen die verschiedenen Zonen aus?
+                </AccordionTrigger>
+                <AccordionContent>
+                Unter 20: gutes Risiko-Ertrags-Verhältnis<br/>
+                Zwischen 20-80: neutral.<br/>
+                Hinweis: Kein 100 %-Signal—es bleibt ein Kompass.<br/>
+                Über 80: → schlechtes Risiko-Ertrags-Verhältnis<br/>
+                Über 90: Mania Phase, sehr schlechtes Risiko-Ertrags-Verhältnis
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-6" className="bg-transparent">
+                 <AccordionTrigger>
                 Wie entsteht der BitcoinTop Indikator?
                 </AccordionTrigger>
                 <AccordionContent>
@@ -280,7 +329,7 @@ export default function Home() {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="item-2" className="bg-transparent">
+              <AccordionItem value="item-7" className="bg-transparent">
                  <AccordionTrigger>
                 Warum nur sieben Indikatoren?
                 </AccordionTrigger>
@@ -289,7 +338,7 @@ export default function Home() {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="item-3" className="bg-transparent">
+              <AccordionItem value="item-8" className="bg-transparent">
                  <AccordionTrigger>
                 Kann der BitcoinTop die Zukunft vorhersagen?
                 </AccordionTrigger>
@@ -298,7 +347,7 @@ export default function Home() {
                 </AccordionContent>
               </AccordionItem>
               
-              <AccordionItem value="item-4" className="bg-transparent">
+              <AccordionItem value="item-9" className="bg-transparent">
                  <AccordionTrigger>
                 Sollte ich meine Trades nach dem Indikator richten?
                 </AccordionTrigger>
@@ -307,7 +356,7 @@ export default function Home() {
                 </AccordionContent>
               </AccordionItem>
               
-                <AccordionItem value="item-5" className="bg-transparent">
+                <AccordionItem value="item-10" className="bg-transparent">
                  <AccordionTrigger>
                   Wie oft wird der Indikator aktualisiert?
                   </AccordionTrigger>
@@ -315,7 +364,7 @@ export default function Home() {
                   Einmal pro Stunde. So bleibst du immer nah am Marktgeschehen, ohne ständig Charts refreshen zu müssen.
                   </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value="item-6" className="bg-transparent">
+                <AccordionItem value="item-11" className="bg-transparent">
                  <AccordionTrigger>
                   Wird der Indikator weiterentwickelt?
                   </AccordionTrigger>
